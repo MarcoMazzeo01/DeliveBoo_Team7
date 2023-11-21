@@ -20,6 +20,8 @@ return new class extends Migration
             $table->text("description");
             $table->text("image");
             $table->string("address", 80);
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
