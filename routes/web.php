@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\RestaurantController;
+use App\Http\Controllers\DishController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\PageController as AdminPageController;
@@ -27,7 +28,11 @@ Route::middleware(['auth', 'verified'])
 
     Route::get('/', [AdminPageController::class, 'index'])->name('home');
 
-    Route::resource('restaurant', RestaurantController::class);
+    // CRUD restaurantController
+    Route::resource('restaurant', RestaurantController::class)->only(['index', 'show']);
+
+  // CRUD dishController
+    Route::resource('dish', DishController::class);
   });
 
 require __DIR__ . '/auth.php';
