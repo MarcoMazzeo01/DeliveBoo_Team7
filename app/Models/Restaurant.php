@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -18,4 +19,6 @@ class Restaurant extends Model
     {
         return $this->belongsToMany(Type::class);
     }
+
+
 }
