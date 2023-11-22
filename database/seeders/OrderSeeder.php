@@ -33,7 +33,7 @@ class OrderSeeder extends Seeder
             $order->customer_phone = $phoneNumber->phoneNumber();
             $order->address = $faker->address() ;
             $order->notes = '';
-            $order->total = $faker->randomFloat(2) ;
+            $order->total = $faker->randomFloat(1, 40, 999) ;
             
             $order->save();
         }
