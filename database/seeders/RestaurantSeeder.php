@@ -17,6 +17,7 @@ class RestaurantSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
+
         for ($i = 0; $i < 5; $i++) {
             $restaurant = new Restaurant();
             $restaurant->name = $faker->sentence(2);
