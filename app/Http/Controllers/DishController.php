@@ -1,19 +1,28 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Dish;
 use Illuminate\Http\Request;
+
+
 
 class DishController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     ** @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        $user = auth()->user();
+        
+        $dishes = Dish::where('restaurant_id', '=', $user->restaurant->id)->get();
+        
+        
+        
+        return view("admin.dishes.index", compact('dishes'));
+        
     }
 
     /**

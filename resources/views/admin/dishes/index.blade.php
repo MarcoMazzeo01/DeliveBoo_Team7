@@ -4,7 +4,7 @@
 
 
 
-<h1>dddd</h1>
+@dd($dishes[1]->id)
 
 
 
