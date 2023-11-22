@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RestaurantController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\PageController as AdminPageController;
@@ -26,6 +27,7 @@ Route::middleware(['auth', 'verified'])
 
     Route::get('/', [AdminPageController::class, 'index'])->name('home');
 
+    Route::resource('restaurant', RestaurantController::class);
   });
 
 require __DIR__ . '/auth.php';
