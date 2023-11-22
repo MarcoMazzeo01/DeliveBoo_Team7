@@ -19,6 +19,11 @@ class Restaurant extends Model
         return $this->belongsToMany(Type::class);
     }
 
+    public function dishes()
+    {
+        return $this->hasMany(Dish::class);
+    }
+
     public function getTypeBadge(){
         $_types = $this->types()->pluck("name")->toArray();
         $badge = '';
@@ -32,6 +37,6 @@ class Restaurant extends Model
     public function getAbsDescription($chars = 30){
 
         $_description = $this->description;
-        return strlen( $_description) > $chars ? substr($_description, 0, $chars) . ' ...':  $_description;
+        return strlen( $_description) > $chars ? substr($_description, 0, $chars) . '...':  $_description;
     }
 }

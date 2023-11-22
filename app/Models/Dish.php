@@ -14,8 +14,14 @@ class Dish extends Model
         return $this->belongsToMany(Order::class);
     }
 
-    public function course() {
-        return $this->belongsTo(Course::class);
+    public function restaurants()
+    {
+        return $this->belongsTo(Restaurant::class);
+    }
+
+    public function getAbsDescription($chars = 60){
+
+        $_description = $this->description;
+        return strlen( $_description) > $chars ? substr($_description, 0, $chars) . '...':  $_description;
     }
 }
-
