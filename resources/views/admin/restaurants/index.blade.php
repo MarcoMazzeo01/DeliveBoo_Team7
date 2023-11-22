@@ -4,7 +4,6 @@
 
 <div class="container">
     <div class="container my-5">
-        <a class="btn btn-outline-success" href="{{route('admin.restaurant.create')}}">Crea Ristorante</a>
         <table class="table">
             <thead>
                 <tr>
@@ -29,9 +28,9 @@
                     <td>{{$restaurant->address}}</td>
                     <td>{{$restaurant->vat}}</td>
                     <td>{!!$restaurant->getTypeBadge()!!}</td>
+                    <td>{{$restaurant->getAbsDescription()}}</td>
                     <td>
-                <a class="btn btn-outline-success" href="{{route('admin.restaurant.edit', $restaurant)}}">Modifica ristorante</a>
-                <a href="{{route("admin.restaurant.show", $restaurant)}}">Guarda il nostro menù</a>
+                <a href="{{route("admin.restaurant.show", $restaurant)}}">Vai al dettaglio</a>
     
                 </form>
     

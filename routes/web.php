@@ -27,7 +27,7 @@ Route::middleware(['auth', 'verified'])
 
     Route::get('/', [AdminPageController::class, 'index'])->name('home');
 
-    Route::resource('restaurant', RestaurantController::class);
+    Route::resource('restaurant', RestaurantController::class)->only(['index', 'show']);
   });
 
 require __DIR__ . '/auth.php';
