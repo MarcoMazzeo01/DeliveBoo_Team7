@@ -19,6 +19,11 @@ class Restaurant extends Model
         return $this->belongsToMany(Type::class);
     }
 
+    public function dishes()
+    {
+        return $this->hasMany(Dish::class);
+    }
+
     public function getTypeBadge(){
         $_types = $this->types()->pluck("name")->toArray();
         $badge = '';
