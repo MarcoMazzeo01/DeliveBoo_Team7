@@ -14,6 +14,7 @@
       <div class="card-text fw-bold {{!$restaurantDetail->vat ? 'text-danger' : '' }}">{{$restaurantDetail->vat ?? 'VAT non inserito' }}</div>
       <p class="card-text">{{$restaurantDetail->description}}</p>
       <a href="{{route('admin.dish.index')}}" class="btn btn-primary">Vai al menù</a>
+      
     </div>
   </div>
 </div>
