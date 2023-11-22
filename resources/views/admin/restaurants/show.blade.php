@@ -13,7 +13,7 @@
       <div class="card-text fw-bold">{{$restaurantDetail->address}}</div>
       <div class="card-text fw-bold {{!$restaurantDetail->vat ? 'text-danger' : '' }}">{{$restaurantDetail->vat ?? 'VAT non inerito' }}</div>
       <p class="card-text">{{$restaurantDetail->description}}</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+      <a href="{{route('admin.dish.index')}}" class="btn btn-primary">Vai al menù</a>
     </div>
   </div>
 </div>
