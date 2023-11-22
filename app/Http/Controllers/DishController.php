@@ -52,7 +52,7 @@ class DishController extends Controller
     public function show(Dish $dish)
     {
         $dishDetail = $dish;
-        dd($dishDetail);
+        
         return view('admin.dishes.show', compact('dishDetail'));
     }
 
