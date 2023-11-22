@@ -7,20 +7,17 @@
         <table class="table">
             <thead>
                 <tr>
-                   
-                    
                     <th scope="col">Id</th>
                     <th scope="col">Nome</th>
                     <th scope="col">Indirizzo</th>
                     <th scope="col">Vat</th>
                     <th scope="col">Tipologia</th>
                     <th scope="col">Descrizione</th>
-                    
                 </tr>
             </thead>
             <tbody>
                 
-                @forelse ($restaurants as $restaurant)
+                @if ($restaurant)
                 <tr>
                     <th scope="row">{{$restaurant->id}}</th>
                                                      
@@ -37,12 +34,12 @@
             </td>
         </tr>
         
-        @empty
+        @else
         <tr>
             <td coldspan="6">Non ci sono risultati</td>
         </tr>
             
-        @endforelse
+        @endif
         
     </tbody>
     </table>
