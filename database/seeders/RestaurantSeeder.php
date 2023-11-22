@@ -4,6 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Restaurant;
+use Faker\Generator as Faker;
+
 
 class RestaurantSeeder extends Seeder
 {
@@ -12,8 +15,16 @@ class RestaurantSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(Faker $faker)
     {
-        //
+        for ($i = 0; $i < 5; $i++) {
+            $restaurant = new Restaurant();
+            $restaurant->name = $faker->sentence(2);
+            $restaurant->address = $faker->address();
+            $restaurant->description = $faker->paragraphs(3, true);
+            $restaurant->image = $faker->imageUrl(360, 360, null, true);
+            $restaurant->user_id = 1;
+            $restaurant->save();
+        }
     }
 }
