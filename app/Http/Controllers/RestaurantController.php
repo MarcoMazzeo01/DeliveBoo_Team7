@@ -13,15 +13,18 @@ class RestaurantController extends Controller
      ** @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $restaurants = Restaurant::all();
-        return view("admin.restaurants.index", compact('restaurants'));
+    {   
+        $user = auth()->user();
+        $restaurant = $user->restaurant;
+       
+       
+    return view("admin.restaurants.index", compact('restaurant'));
     }
 
     public function show(Restaurant $restaurant)
     {
         
-        $restaurantDetail = $restaurant::select('name', 'address', 'vat', 'description', 'image')->first();
+        $restaurantDetail = $restaurant;
         
         return view('admin.restaurants.show', compact('restaurantDetail'));
     }
