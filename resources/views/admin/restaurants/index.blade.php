@@ -28,7 +28,7 @@
                     <td>{{$restaurant->name}}</td>
                     <td>{{$restaurant->address}}</td>
                     <td>{{$restaurant->vat}}</td>
-                    <td>{{$restaurant->types}}</td>
+                    <td>{!!$restaurant->getTypeBadge()!!}</td>
                     <td>
                 <a class="btn btn-outline-success" href="{{route('admin.restaurant.edit', $restaurant)}}">Modifica ristorante</a>
                 <a href="{{route("admin.restaurant.show", $restaurant)}}">Guarda il nostro menù</a>
