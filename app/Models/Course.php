@@ -10,6 +10,6 @@ class Course extends Model
     use HasFactory;
 
     public function dishes() {
-        $this->hasMany(Dish::class);
+       return $this->hasMany(Dish::class);
     }
 }
