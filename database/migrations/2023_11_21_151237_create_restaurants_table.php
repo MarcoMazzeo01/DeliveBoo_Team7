@@ -15,9 +15,9 @@ return new class extends Migration {
         Schema::create('restaurants', function (Blueprint $table) {
             $table->id();
             $table->string("name");
-            $table->string("vat", 11)->nullable();
+            $table->string("vat", 11);
             $table->text("description");
-            $table->text("image");
+            $table->text("image")->nullable();
             $table->string("address", 80);
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
