@@ -17,10 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string("customer_name");
             $table->string("customer_surname");
-            $table->string("customer_phone");
+            $table->string("customer_phone")->nullable();
             $table->string("address");
-            $table->text("notes");
-            $table->decimal("total", 10, 2, true);
+            $table->text("notes")->nullable();
+            $table->decimal("total", 5, 2, true);
             $table->timestamps();
         });
     }
