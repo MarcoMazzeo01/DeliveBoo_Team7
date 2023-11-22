@@ -18,4 +18,10 @@ class Dish extends Model
     {
         return $this->belongsTo(Restaurant::class);
     }
+
+    public function getAbsDescription($chars = 60){
+
+        $_description = $this->description;
+        return strlen( $_description) > $chars ? substr($_description, 0, $chars) . '...':  $_description;
+    }
 }

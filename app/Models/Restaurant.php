@@ -37,6 +37,6 @@ class Restaurant extends Model
     public function getAbsDescription($chars = 30){
 
         $_description = $this->description;
-        return strlen( $_description) > $chars ? substr($_description, 0, $chars) . ' ...':  $_description;
+        return strlen( $_description) > $chars ? substr($_description, 0, $chars) . '...':  $_description;
     }
 }
