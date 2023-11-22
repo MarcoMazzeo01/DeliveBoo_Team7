@@ -18,7 +18,7 @@ class DishController extends Controller
         $user = auth()->user();
         
         $dishes = Dish::where('restaurant_id', '=', $user->restaurant->id)->get();
-              
+        
         return view("admin.dishes.index", compact('dishes'));
     }
 
@@ -49,9 +49,11 @@ class DishController extends Controller
      * @param  int  $id
      ** @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Dish $dish)
     {
-        //
+        $dishDetail = $dish;
+        dd($dishDetail);
+        return view('admin.dishes.show', compact('dishDetail'));
     }
 
     /**

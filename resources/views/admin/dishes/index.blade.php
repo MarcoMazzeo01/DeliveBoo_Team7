@@ -12,7 +12,7 @@
     <div class="row row-cols-3 justify-content-center">
         <div class="col">
             @forelse ($dishes as $dish)
-                @if($dish->visible)
+            @if($dish->visible )
                     <div class="card p-1" style="max-width: 540px;">
                         <div class="row g-0">
                         <div class="col-md-4">
