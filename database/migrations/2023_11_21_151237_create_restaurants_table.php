@@ -18,10 +18,10 @@ return new class extends Migration
             $table->string("name");
             $table->string("vat", 11);
             $table->text("description");
-            $table->text("image");
+            $table->text("image")->nullable();
             $table->string("address", 80);
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')->nullable()->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

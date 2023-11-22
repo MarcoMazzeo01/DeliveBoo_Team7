@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text("description");
             $table->decimal("price", 10, 2, true);
             $table->boolean("visible");
-            $table->text("image");
+            $table->text("image")->nullable();
             $table->timestamps();
         });
     }
