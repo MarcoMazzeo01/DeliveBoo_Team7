@@ -33,7 +33,8 @@
                 document.getElementById('logout-form').submit();">
                 {{ __('Logout') }}
               </a>
-              <li>
+              
+              <li class="nav-item">
 
                 <a class="nav-link" href="{{ route('admin.restaurant.index') }}">My Restaurant</a>
               </li>
