@@ -18,4 +18,16 @@ class Restaurant extends Model
     {
         return $this->belongsToMany(Type::class);
     }
+
+    public function getTypeBadge(){
+        $_types = $this->types()->pluck("name")->toArray();
+        $badge = '';
+        foreach ($_types as $_typeName) {
+            // dd($_typeName);
+            $badge .= "<span class='badge' style='background-color: green'>{$_typeName}</span>";
+        
+        }
+        return $badge;
+        
+    }
 }
