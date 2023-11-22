@@ -33,6 +33,12 @@
                 document.getElementById('logout-form').submit();">
                 {{ __('Logout') }}
               </a>
+              <li>
+
+                <a class="nav-link" href="{{ route('admin.restaurant.index') }}">My Restaurant</a>
+              </li>
+
+
 
               <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                 @csrf
