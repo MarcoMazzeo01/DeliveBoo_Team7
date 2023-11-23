@@ -151,10 +151,10 @@
 
                                 <div class="col-md-6">
                                     <input type="file" class="form-control @error('image') is-invalid @enderror"
-                                        id="image" name="image"
-                                        value="{{ old('image') }}"autocomplete="restaurant_name" autofocus>
+                                        id="image" name="image" value="{{ old('image') }}"autocomplete="image"
+                                        autofocus>
 
-                                    @error('restaurant_name')
+                                    @error('image')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
