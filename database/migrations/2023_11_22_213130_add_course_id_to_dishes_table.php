@@ -14,9 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('dishes', function (Blueprint $table) {
-            $table->foreignId('course_id')
-
-            ->constrained();
+            $table->foreignId('course_id')->constrained();
     });
     }
 

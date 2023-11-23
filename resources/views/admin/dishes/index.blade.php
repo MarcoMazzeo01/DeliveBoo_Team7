@@ -8,7 +8,7 @@
 
 @section('content')
     <div class="container mt-5">
-        <button class="mx-auto">Crea un prodotto</button>
+        <button class="mx-auto">crea un prodotto</button>
         <div class="row row-cols-3 justify-content-center">
             <div class="col">
                 @forelse ($dishes as $dish)
@@ -47,7 +47,7 @@
             </div>
         @empty
             <button>
-                'Attualmente il tuo menu è vuoto! crea almeno un piatto!'
+                'attualmente il tuo menu è vuoto! crea almeno un piatto!'
             </button>
             @endforelse
 

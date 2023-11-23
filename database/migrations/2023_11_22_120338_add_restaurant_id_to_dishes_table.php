@@ -13,8 +13,7 @@ return new class extends Migration {
     public function up()
     {
         Schema::table('dishes', function (Blueprint $table) {
-            $table->foreignId('restaurant_id')
-                ->constrained();
+            $table->foreignId('restaurant_id')->constrained();
         });
     }
 
