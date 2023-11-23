@@ -19,9 +19,23 @@ class Dish extends Model
         return $this->belongsTo(Restaurant::class);
     }
 
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
+    }
+
     public function getAbsDescription($chars = 60){
 
         $_description = $this->description;
         return strlen( $_description) > $chars ? substr($_description, 0, $chars) . '...':  $_description;
     }
+
+
+    public function getCourseBadge(){
+
+        
+       return $badge = "<span class='badge' style='background-color: grey'>{$this->course->name}</span>";
+    }
+
+
 }
