@@ -37,9 +37,9 @@ class RestaurantFactory extends Factory
         ];
 
         return [
-            'name' => $faker->randomElement($restaurantTypes) . " " . $faker->randomElement($restaurantNames),
+            'restaurant_name' => $faker->randomElement($restaurantTypes) . " " . $faker->randomElement($restaurantNames),
             'address' => $faker->address,
-            'description' => $faker->randomElement($restaurantDescription) ,
+            'description' => $faker->randomElement($restaurantDescription),
             'image' => fake()->imageUrl(360, 360, null, true),
             'user_id' => fake()->randomElement($user),
             'vat' => fake()->numerify('IT###########'),
