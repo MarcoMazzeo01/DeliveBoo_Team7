@@ -16,13 +16,9 @@ return new class extends Migration
         Schema::create('dish_order', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('dish_id')
-                ->constrained()
-                ->cascadeOnDelete();
+            $table->foreignId('dish_id')->constrained()->cascadeOnDelete();
 
-            $table->foreignId('order_id')
-                ->constrained()
-                ->cascadeOnDelete();
+            $table->foreignId('order_id')->constrained()->cascadeOnDelete();
 
             $table->integer("quantity", false, false)->nullable();
             $table->timestamps();
