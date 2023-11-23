@@ -18,14 +18,15 @@ class RestaurantFactory extends Factory
     public function definition()
     {
         $user = User::all()->pluck('id')->toArray();
-        
+
         return [
-            'name'=> fake()->sentence(2),
-            'address'=> fake()->address(),
-            'description'=> fake()->paragraphs(3, true),
-            'image'=> fake()->imageUrl(360, 360, null, true),
-            'user_id' => fake()->randomElement($user)
-            
+            'name' => fake()->sentence(2),
+            'address' => fake()->address(),
+            'description' => fake()->paragraphs(3, true),
+            'image' => fake()->imageUrl(360, 360, null, true),
+            'user_id' => fake()->randomElement($user),
+            'vat' => fake()->numerify('IT###########'),
+
         ];
     }
 }
