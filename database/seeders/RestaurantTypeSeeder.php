@@ -23,7 +23,7 @@ class RestaurantTypeSeeder extends Seeder
 
         foreach ($restaurants as $restaurant) {
             $restaurant
-                ->type()
+                ->types()
                 ->attach($faker->randomElements($types, random_int(0, 4)));
         }
     }
