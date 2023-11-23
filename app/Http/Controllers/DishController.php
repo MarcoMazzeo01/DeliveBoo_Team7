@@ -5,6 +5,8 @@ use App\Models\Dish;
 use App\Models\Course;
 use Illuminate\Http\Request;
 
+use App\Http\Requests\StoreDishRequest;
+
 
 
 class DishController extends Controller
@@ -43,10 +45,10 @@ class DishController extends Controller
      * @param  \Illuminate\Http\Request  $request
      ** @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreDishRequest $request)
     {
-        $ciao = $request->price;
-        dd($request);
+        $ciao = $request->validated();
+        dd($ciao);
     }
 
     /**
