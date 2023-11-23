@@ -4,6 +4,7 @@
 
 
 <div class="container mt-5">
+  <a class="btn btn-primary" href="{{route('admin.dish.index')}}">Torna al menù</a>
     <div class="card border-danger border-2" >
         <img src="{{$dishDetail->image ? $dishDetail->image : 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/310px-Placeholder_view_vector.svg.png'}}" class="card-img-top py-3" alt="...">
       
