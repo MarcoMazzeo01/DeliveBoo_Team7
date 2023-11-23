@@ -7,16 +7,16 @@
             <img src="" alt="">
         </div>
         <div class="col-8">
-            <form action="{{route('admin.dish.store')}}" method="POST">
+            <form action="{{route('admin.dish.store')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                     
                 <div class="mb-3">
                     <label for="name" class="form-label" >Nome del piatto</label>
-                    <input type="text" class="form-control" id="name" name="name" required>
+                    <input type="text" class="form-control" id="name" name="name">
                 </div>
                 <div class="mb-3">
                     <label for="price" class="form-label" >Inserisci il prezzo</label>
-                    <input type="text" class="form-control" id="price" name="price" required>
+                    <input type="text" class="form-control" id="price" name="price">
                 </div>
                 <div class="mb-3">
                     <label for="image" class="form-label">Carica una immagine</label>
@@ -26,11 +26,11 @@
                 <div class="mb-3 form-check d-flex align-items-center gap-5">
                     <div class="visibile_chek">
 
-                        <input type="checkbox" class="form-check-input" id="visible">
-                        <label class="form-check-label" for="visible" name="visible">Disponibile</label>
+                        <input type="checkbox" name="visible" value="1" class="form-check-input" id="visible">
+                        <label class="form-check-label" for="visible" >Disponibile</label>
                     </div>
 
-                    <select class="form-select" name="course_id" required >
+                    <select class="form-select" name="course_id">
                         <option value="" selected>Tipo di portata</option>
                         @foreach($courses as $course)
                             <option value="{{$course->id}}">{{$course->name}}</option>

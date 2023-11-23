@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\Dish;
 use App\Models\Course;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\support\Arr;
 
 use App\Http\Requests\StoreDishRequest;
 
@@ -32,7 +34,7 @@ class DishController extends Controller
      */
     public function create()
     {
-        $dish = Dish::select('name', 'price', 'visible', 'image', 'course_id');
+        $dish = Dish::select('name', 'price', 'visible', 'image', 'course_id', 'restaurant_id');
         $courses = Course::select('id','name')->get();      
        
         return view('admin.dishes.create', compact('dish', 'courses'));
@@ -47,8 +49,39 @@ class DishController extends Controller
      */
     public function store(StoreDishRequest $request)
     {
-        $ciao = $request->validated();
-        dd($ciao);
+        $ciao = auth()->user();
+        $greve = $ciao->restaurant->id;
+        // dd($greve);
+        $data = $request->validated();
+        $dish = new Dish;
+
+        $dish->name = $data['name'];
+        $dish->price = $data['price'];
+        $dish->course_id = $data['course_id'];
+        $dish->description = $data['description'];
+        $dish->restaurant_id =  $greve;
+        
+        // $user = auth()->user();
+        // $restaurant = $user->restaurant
+
+
+    if(Arr::exists($data,'visible')){
+        $dish->visible = $data['visible'];
+
+    }else{
+        $dish->visible = 0;
+    }
+        
+        if(Arr::exists($data,'image')){
+            $image_path = Storage::put('uploads', $data['image']);
+            $dish->image = $image_path;
+        }
+
+       
+        $dish->save();
+
+       return redirect()->route('admin.dish.index')->with('success','dddd');
+        
     }
 
     /**

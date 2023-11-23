@@ -27,7 +27,10 @@ class StoreDishRequest extends FormRequest
             "course_id" => 'required|present',       
             "name" => 'required|string|max:30',
             "price" => 'required|numeric',
-            "image" => 'image|max:512'
+            "image" => 'image|max:512',
+            "description" => 'required',
+            "visible" => 'nullable'
+            
 
         ];
         }
@@ -48,7 +51,8 @@ class StoreDishRequest extends FormRequest
             "image.image" => "Il file nn è una immagine",
             "image.max" => "peso massimo axccetato 512 kb",
            
-            
+            "description.required" => "la descrizione è obbligatoria"
+    
         ];
     }
 }
