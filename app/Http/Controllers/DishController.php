@@ -92,6 +92,7 @@ class DishController extends Controller
     {
         $dishDetail = $dish;
         
+        
         return view('admin.dishes.show', compact('dishDetail'));
     }
 
