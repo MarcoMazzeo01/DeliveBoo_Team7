@@ -7,8 +7,10 @@
 @endsection
 
 @section('content')
-    <div class="container mt-5">
-        <a class="btn btn-success mb-3" href="{{ route('admin.dish.create') }}">Crea un prodotto</a>
+<div class="d-flex justify-content-between">
+    <h3> Menù <h3>
+        <a class="btn btn-dark mb-3" href="{{ route('admin.dish.create') }}">Crea un prodotto</a>
+</div>
         <div class="row row-cols-1 row-cols-md-3 g-4">
             @foreach ($dishes as $dish)
                 <div class="col">

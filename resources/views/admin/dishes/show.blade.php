@@ -1,9 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mt-5">
-    <a class="btn btn-primary mb-3" href="{{ route('admin.dish.index') }}">Torna al menù</a>
-
+<div class="d-flex justify-content-between">
+  <h3>Dettagli piatto </h3>
+    <a class="btn btn-dark mb-3" href="{{ route('admin.dish.index') }}">Torna al menù</a>
+</div>
     <div class="card {{$dishDetail->visible ? 'bg-light' : 'border-danger'}}">
         <div class="row g-0">
             <div class="col-md-4">
@@ -22,5 +23,4 @@
             </div>
         </div>
     </div>
-</div>
 @endsection
