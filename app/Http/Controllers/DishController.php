@@ -49,6 +49,7 @@ class DishController extends Controller
      */
     public function store(StoreDishRequest $request)
     {
+        dd($request);
         $user = auth()->user();
         $_restaurant_id = $user->restaurant->id;
     
