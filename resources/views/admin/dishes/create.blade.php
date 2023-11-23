@@ -7,16 +7,16 @@
             <img src="" alt="">
         </div>
         <div class="col-8">
-            <form action="admin.dish.store" method="POST">
+            <form action="{{route('admin.dish.store')}}" method="POST">
                 @csrf
                     
                 <div class="mb-3">
-                    <label for="name" class="form-label">Nome del piatto</label>
-                    <input type="text" class="form-control" id="name" name="name">
+                    <label for="name" class="form-label" >Nome del piatto</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
                 </div>
                 <div class="mb-3">
-                    <label for="price" class="form-label">Inserisci il prezzo</label>
-                    <input type="text" class="form-control" id="price" name="price">
+                    <label for="price" class="form-label" >Inserisci il prezzo</label>
+                    <input type="text" class="form-control" id="price" name="price" required>
                 </div>
                 <div class="mb-3">
                     <label for="image" class="form-label">Carica una immagine</label>
@@ -30,11 +30,11 @@
                         <label class="form-check-label" for="visible" name="visible">Disponibile</label>
                     </div>
 
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                    <select class="form-select" name="course_id" required >
+                        <option value="" selected>Tipo di portata</option>
+                        @foreach($courses as $course)
+                            <option value="{{$course->id}}">{{$course->name}}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="mb-3">

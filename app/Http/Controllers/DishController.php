@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Dish;
+use App\Models\Course;
 use Illuminate\Http\Request;
 
 
@@ -30,8 +31,9 @@ class DishController extends Controller
     public function create()
     {
         $dish = Dish::select('name', 'price', 'visible', 'image', 'course_id');
-        
-        return view('admin.dishes.create', compact('dish'));
+        $courses = Course::select('id','name')->get();      
+       
+        return view('admin.dishes.create', compact('dish', 'courses'));
 
     }
 
@@ -43,7 +45,8 @@ class DishController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $ciao = $request->price;
+        dd($request);
     }
 
     /**
