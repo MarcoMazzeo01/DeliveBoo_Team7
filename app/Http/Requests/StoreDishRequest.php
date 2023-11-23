@@ -35,7 +35,7 @@ class StoreDishRequest extends FormRequest
         ];
         }
 
-    public function message()
+    public function messages()
     {
         return [
             "course_id.required" => 'Campo obbligatorio',

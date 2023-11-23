@@ -49,9 +49,9 @@ class DishController extends Controller
      */
     public function store(StoreDishRequest $request)
     {
-        $ciao = auth()->user();
-        $greve = $ciao->restaurant->id;
-        // dd($greve);
+        $user = auth()->user();
+        $_restaurant_id = $user->restaurant->id;
+    
         $data = $request->validated();
         $dish = new Dish;
 
@@ -59,21 +59,19 @@ class DishController extends Controller
         $dish->price = $data['price'];
         $dish->course_id = $data['course_id'];
         $dish->description = $data['description'];
-        $dish->restaurant_id =  $greve;
+        $dish->restaurant_id =  $_restaurant_id;
         
-        // $user = auth()->user();
-        // $restaurant = $user->restaurant
 
 
-    if(Arr::exists($data,'visible')){
-        $dish->visible = $data['visible'];
+        if(Arr::exists($data,'visible')){
+            $dish->visible = $data['visible'];
 
-    }else{
-        $dish->visible = 0;
-    }
+        }else{
+            $dish->visible = 0;
+        }
         
         if(Arr::exists($data,'image')){
-            $image_path = Storage::put('uploads', $data['image']);
+            $image_path = Storage::put('uploads/restaurant_id ' . $_restaurant_id . '/dishes', $data['image']);
             $dish->image = $image_path;
         }
 
@@ -93,6 +91,7 @@ class DishController extends Controller
     public function show(Dish $dish)
     {
         $dishDetail = $dish;
+        
         
         return view('admin.dishes.show', compact('dishDetail'));
     }
