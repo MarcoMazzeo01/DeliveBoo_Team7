@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\support\Arr;
 
 use App\Http\Requests\StoreDishRequest;
+use App\Http\Requests\UpdateDishRequest;
 
 
 
@@ -60,7 +61,7 @@ class DishController extends Controller
         $dish->price = $data['price'];
         $dish->course_id = $data['course_id'];
         $dish->description = $data['description'];
-        $dish->restaurant_id =  $_restaurant_id;
+        $dish->restaurant_id = $_restaurant_id;
         
 
 
@@ -78,7 +79,7 @@ class DishController extends Controller
 
         $dish->save();
 
-       return redirect()->route('admin.dish.index')->with('success','dddd');
+       return redirect()->route('admin.dish.index');
         
     }
 
@@ -104,7 +105,7 @@ class DishController extends Controller
     public function edit(Dish $dish)
     {
         $dishDetail = $dish;
-    //    dd($dishDetail);
+  
         $courses = Course::select('id','name')->get();
 
        return view('admin.dishes.edit', compact('dishDetail', 'courses'));
@@ -117,9 +118,42 @@ class DishController extends Controller
      * @param  int  $id
      ** @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateDishRequest $request, Dish $dish)
     {
-        //
+        $data = $request->validated();
+        
+        $user = auth()->user();
+        $_restaurant_id = $user->restaurant->id;
+
+        $dish->name = $data['name'];
+        $dish->price = $data['price'];
+        $dish->course_id = $data['course_id'];
+        $dish->description = $data['description'];
+        $dish->restaurant_id = $_restaurant_id;
+
+        if(Arr::exists($data,'visible')){
+            $dish->visible = $data['visible'];
+
+        }else{
+            $dish->visible = 0;
+        }
+        
+        if(Arr::exists($data,'image')){
+
+            if($dish->image){
+                Storage::delete($dish->image);
+            }
+
+            
+            $image_path = Storage::put('uploads/restaurant_id ' . $_restaurant_id . '/dishes', $data['image']);
+            $dish->image = $image_path;
+        }
+
+
+        $dish->save();
+
+        return redirect()->route('admin.dish.show', $dish);
+        
     }
 
     /**
