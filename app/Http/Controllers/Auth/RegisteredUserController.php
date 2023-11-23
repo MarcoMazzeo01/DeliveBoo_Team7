@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use app\Models\Restaurant;
+use App\Models\Restaurant;
+use App\Models\Type;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -21,7 +22,7 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('auth.register');
+        return view('auth.register')->with('types', Type::all());
     }
 
     /**
@@ -31,40 +32,45 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        $types = Type::all();
         $request->validate([
+            // 'restaurant_name' => ['required', 'string', 'max:255'],
+            // 'address' => ['required', 'string', 'max:255'],
+            // 'vat' => ['required', 'string', 'max:255'],
+            // 'description' => ['required', 'text'],
+            // 'image' => ['nullable', 'string', 'max:512'],
             'name' => ['required', 'string', 'max:255'],
             'surname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'address' => ['required', 'string', 'max:255'],
-            'vat' => ['required', 'string', 'max:255'],
-            'description' => ['required', 'text'],
-            'image' => ['nullable', 'string'],
-
-
         ]);
 
         $user = User::create([
             'name' => $request->name,
-            'surname' => $request->name,
+            'surname' => $request->surname,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
 
         $restaurant = new Restaurant([
-            'name' => $request->name,
+            'restaurant_name' => $request->restaurant_name,
             'address' => $request->address,
             'vat' => $request->vat,
             'description' => $request->description,
             'image' => $request->image,
-
         ]);
 
+
         $user->restaurant()->save($restaurant);
+
+        $restaurant->types()->attach($request->types);
+
+
 
         event(new Registered($user));
 
         Auth::login($user);
+
 
         return redirect(RouteServiceProvider::HOME);
     }
