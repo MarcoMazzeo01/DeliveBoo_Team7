@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-sm navbar-light bg-light">
   <div class="container">
-    <a class="navbar-brand" href="{{ route('guest.home') }}">Navbar</a>
+    
     <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId"
       aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -28,13 +28,18 @@
             </a>
 
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{{ route('admin.home') }}">{{ __('Dashboard') }}</a>
-              <a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('Profile') }}</a>
               <a class="dropdown-item" href="{{ route('logout') }}"
                 onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                document.getElementById('logout-form').submit();">
                 {{ __('Logout') }}
               </a>
+              
+              <li class="nav-item">
+
+                <a class="nav-link" href="{{ route('admin.restaurant.index') }}">My Restaurant</a>
+              </li>
+
+
 
               <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                 @csrf
