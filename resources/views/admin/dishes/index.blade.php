@@ -8,41 +8,36 @@
 
 @section('content')
     <div class="container mt-5">
-        <a class="btn btn-success" href="{{route('admin.dish.create')}}">Crea un prodotto</a>
-        <div class="row row-cols-3 justify-content-center">
-            <div class="col">
-                @foreach ($dishes as $dish)
-                 
-                <div class="card p-1 {{$dish->visible ? '' : 'border-danger'}}" style="max-width: 540px;">
-                    <div class="row g-0">
-                        <div class="col-md-4">
-                            <img src="{{ $dish->image }}" class="img-fluid rounded-start" alt="...">
-
-                            <div class="icons d-flex flex-column align-items-center gap-1 mt-1  ">
-                                <a class="" href="{{ route('admin.dish.show', $dish) }}">
-                                    <i class="fa-solid fa-eye fa-lg"></i>
-                                </a>
-                                <a class="" href="#">
-                                    <i class="fa-solid fa-pencil fa-lg"></i>
-                                </a>
-                                <a class="" href="#">
-                                    <i class="fa-solid fa-trash fa-lg"></i>
-                                </a>
+        <a class="btn btn-success mb-3" href="{{ route('admin.dish.create') }}">Crea un prodotto</a>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            @foreach ($dishes as $dish)
+                <div class="col">
+                    <div class="card {{$dish->visible ? '' : 'border-danger'}}">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="{{ $dish->image }}" class="img-fluid rounded-start" alt="Dish Image">
+                                <div class="icons d-flex justify-content-center mt-3">
+                                    <a href="{{ route('admin.dish.show', $dish) }}" class="me-2">
+                                        <i class="fas fa-eye fa-lg"></i>
+                                    </a>
+                                    <a href="#" class="me-2">
+                                        <i class="fas fa-pencil-alt fa-lg"></i>
+                                    </a>
+                                    <a href="#" class="me-2">
+                                        <i class="fas fa-trash-alt fa-lg"></i>
+                                    </a>
+                                </div>
                             </div>
-
-
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $dish->name }}</h5>
-                                <p class="card-text">{{ $dish->getAbsDescription() }}</p>
-                                <p class="card-text"><small class="fw-bold">Price: {{ $dish->price }}€</small></p>
-                                <p>{!!$dish->getCourseBadge()!!}</p>
-
-                                @if(!$dish->visible) 
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ $dish->name }}</h5>
+                                    <p class="card-text">{{ $dish->getAbsDescription() }}</p>
+                                    <p class="card-text"><small class="fw-bold">Price: {{ $dish->price }}€</small></p>
+                                    <p>{!! $dish->getCourseBadge() !!}</p>
+                                    @if(!$dish->visible) 
                                         <p class="card-text"><small class="fw-bold text-danger">Non disponibile</small></p>
-                                @endif
-
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     </div>
