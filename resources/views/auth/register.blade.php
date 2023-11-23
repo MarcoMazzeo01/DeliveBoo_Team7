@@ -150,7 +150,15 @@
                                 <label for="image" class="form-label col-md-4">Carica una immagine</label>
 
                                 <div class="col-md-6">
-                                    <input type="file" class="form-control" id="image" name="image">
+                                    <input type="file" class="form-control @error('image') is-invalid @enderror"
+                                        id="image" name="image"
+                                        value="{{ old('image') }}"autocomplete="restaurant_name" autofocus>
+
+                                    @error('restaurant_name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
 
                             </div>

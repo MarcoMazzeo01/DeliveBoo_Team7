@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Storage;
 
 class RegisteredUserController extends Controller
 {
@@ -60,12 +61,19 @@ class RegisteredUserController extends Controller
             'image' => $request->image,
         ]);
 
-
+        // $image_path = Storage::put('uploads/restaurant_id ' . $restaurant->id, $restaurant['image']);
+        // $restaurant->image = $image_path;
         $user->restaurant()->save($restaurant);
 
         $restaurant->types()->attach($request->types);
 
-
+        if ($request->hasFile('image')) {
+            $restaurantIdString = strval($restaurant->id);
+            $image_path = $request->file('image')->store('uploads/restaurant_id' . $restaurantIdString);
+            $restaurantDetail = $restaurant;
+            $restaurantDetail->image = $image_path;
+            $restaurantDetail->save();
+        }
 
         event(new Registered($user));
 

@@ -3,10 +3,9 @@
 @section('content')
     <div class="container my-4">
         <div class="row">
-
             <div class="card w-50 mx-auto">
-                <img src="{{ $restaurantDetail->image ? $restaurantDetail->image : 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/310px-Placeholder_view_vector.svg.png' }}"
-                    class="w-50 mx-auto card-img-top py-3" alt="...">
+                <img src="{{ asset('/storage/' . $restaurantDetail->image) }}" class="w-50 mx-auto card-img-top py-3"
+                    alt="...">
 
                 <div class="card-body">
                     <h5 class="card-title">{{ $restaurantDetail->restaurant_name }}</h5>
