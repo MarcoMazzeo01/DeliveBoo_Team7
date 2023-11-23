@@ -12,11 +12,11 @@
                     
                 <div class="mb-3">
                     <label for="name" class="form-label" >Nome del piatto</label>
-                    <input type="text" class="form-control" id="name" name="name">
+                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name">
                 </div>
                 <div class="mb-3">
                     <label for="price" class="form-label" >Inserisci il prezzo</label>
-                    <input type="text" class="form-control" id="price" name="price">
+                    <input type="text" class="form-control @error('price') is-invalid @enderror" id="price" name="price">
                 </div>
                 <div class="mb-3">
                     <label for="image" class="form-label">Carica una immagine</label>
@@ -30,7 +30,7 @@
                         <label class="form-check-label" for="visible" >Disponibile</label>
                     </div>
 
-                    <select class="form-select" name="course_id">
+                    <select class="form-select @error('course_id') is-invalid @enderror" name="course_id">
                         <option value="" selected>Tipo di portata</option>
                         @foreach($courses as $course)
                             <option value="{{$course->id}}">{{$course->name}}</option>
@@ -38,7 +38,7 @@
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label for="description" class="form-label">Aggiungi una descrizione</label>
+                    <label for="description" class="form-label @error('description') is-invalid @enderror">Aggiungi una descrizione</label>
                     <textarea name="description" id="description" class="form-control" cols="50" rows="5"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
