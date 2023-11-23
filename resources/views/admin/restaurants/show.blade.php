@@ -9,7 +9,7 @@
                     class="w-50 mx-auto card-img-top py-3" alt="...">
 
                 <div class="card-body">
-                    <h5 class="card-title">{{ $restaurantDetail->name }}</h5>
+                    <h5 class="card-title">{{ $restaurantDetail->restaurant_name }}</h5>
                     <div class="card-text fw-bold">{{ $restaurantDetail->address }}</div>
                     <div class="card-text fw-bold {{ !$restaurantDetail->vat ? 'text-danger' : '' }}">
                         {{ $restaurantDetail->vat ?? 'VAT non inserito' }}</div>

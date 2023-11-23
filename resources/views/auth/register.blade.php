@@ -46,15 +46,16 @@
                             </div>
 
                             <div class="mb-4 row">
-                                <label for="name"
+                                <label for="restaurant_name"
                                     class="col-md-4 col-form-label text-md-right">{{ __('Nome attività') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="name" type="text"
-                                        class="form-control @error('name') is-invalid @enderror" name="name"
-                                        value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                    <input id="restaurant_name" type="text"
+                                        class="form-control @error('restaurant_name') is-invalid @enderror"
+                                        name="restaurant_name" value="{{ old('restaurant_name') }}" required
+                                        autocomplete="restaurant_name" autofocus>
 
-                                    @error('name')
+                                    @error('restaurant_name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -113,6 +114,38 @@
                                 </div>
                             </div>
 
+                            <div class="row my-3">
+                                <label for="description" class="col-md-4 col-form-label text-md-right">Descrizione</label>
+                                <div class="col-md-6">
+                                    <textarea name ="description" id="description" class="form-control @error('description') is-invalid @enderror"
+                                        rows="5"></textarea>
+                                    @error('description')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="col-6 my-5">
+                                <div class=" row form-check @error('types') is-invalid @enderror">
+                                    <h5>Tipo di Cucina:</h5>
+                                    @foreach ($types as $type)
+                                        <div class="col-6">
+                                            <input type="checkbox" name="types[]" id="type-{{ $type->id }}"
+                                                value="{{ $type->id }}" class="form-check-control my-2"
+                                                @if (in_array($type->id, old('types', []))) checked @endif>
+                                            <label for="type-{{ $type->id }}">{{ $type->name }}</label>
+                                        </div>
+                                    @endforeach
+                                </div>
+                                @error('types')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+
                             <div class="mb-4 row">
                                 <label for="password"
                                     class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
@@ -140,23 +173,6 @@
                                 </div>
                             </div>
 
-                            {{-- <div class="col-4 mt-3 fw-bold"> <label for="type_id" class="form-label">Tipo</label>
-                                <select name="type_id" id="type_id"
-                                    class="form-select @error('type_id') is-invalid @enderror">
-                                    <option value="">Nessun tipo</option>
-                                    @foreach ($types as $type)
-                                        <option value="{{ $type->id }}"
-                                            @if (old('type_id') == $type->id) selected @endif>
-                                            {{ $type->label }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                @error('type_id')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div> --}}
 
                             <div class="mb-4 row mb-0">
                                 <div class="col-md-6 offset-md-4">
