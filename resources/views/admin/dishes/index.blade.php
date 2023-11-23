@@ -8,7 +8,7 @@
 
 
 <div class="container mt-5">
-    <button class="mx-auto">crea un prodotto</button>
+    <a class="btn btn-success" href="{{route('admin.dish.create')}}">Crea un prodotto</a>
     <div class="row row-cols-3 justify-content-center">
         <div class="col">
             @forelse ($dishes as $dish)
@@ -37,6 +37,7 @@
                         <h5 class="card-title">{{$dish->name}}</h5>
                         <p class="card-text">{{$dish->getAbsDescription()}}</p>
                         <p class="card-text"><small class="fw-bold">Price: {{$dish->price}}€</small></p>
+                        <p>{!!$dish->getCourseBadge()!!}</p>
                         @if(!$dish->visible) 
                             <p class="card-text"><small class="fw-bold text-danger">Non disponibile</small></p>
                         @endif
@@ -48,9 +49,9 @@
                 
         </div>
         @empty
-            <button>
+            <p>
                 'attualmente il tuo menu è vuoto! crea almeno un piatto!'
-            </button>
+            </p>
         @endforelse
                     
 

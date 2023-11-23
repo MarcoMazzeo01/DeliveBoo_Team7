@@ -12,6 +12,7 @@
           <h5 class="card-title">{{$dishDetail->name}}</h5>
           <p class="card-text">{{$dishDetail->getAbsDescription()}}</p>
           <p class="card-text"><small class="fw-bold">Price: {{$dishDetail->price}}€</small></p>
+          <p>{!!$dishDetail->getCourseBadge()!!}</p>
           @if(!$dishDetail->visible) 
               <p class="card-text"><small class="fw-bold text-danger">Non disponibile</small></p>
           @endif
