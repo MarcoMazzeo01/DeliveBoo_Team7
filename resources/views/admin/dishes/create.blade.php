@@ -4,7 +4,8 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-4">
-            <img src="" alt="">
+            
+            <img src="" alt="" id="image_preview" class="img-fluid">
         </div>
         <div class="col-8">
             <form action="{{route('admin.dish.store')}}" method="POST" enctype="multipart/form-data">
@@ -71,5 +72,17 @@
 </div>
 @endsection
 
-        
-        
+    
+@section('script')
+<script type="text/javascript">
+    
+    const imagePreview = document.getElementById('image_preview');
+    const image = document.getElementById('image');
+    console.log(imagePreview);
+    image.addEventListener('change', function(){
+        const [file] = this.files;
+        imagePreview.src = URL.createObjectURL(file);
+    })
+    
+</script>
+@endsection
