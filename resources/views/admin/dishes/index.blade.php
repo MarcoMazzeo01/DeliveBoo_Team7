@@ -8,7 +8,7 @@
 
 @section('content')
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2 class="mb-0">Menù</h2>
+            <h3 class="mb-0">Menù</h3>
             <a class="btn btn-dark" href="{{ route('admin.dish.create') }}">Crea un prodotto</a>
         </div>
 
