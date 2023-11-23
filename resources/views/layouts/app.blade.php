@@ -26,7 +26,12 @@
       @include('partials._navbar')
 
       <main class="">
-        @yield('content')
+        <div class="container">
+          <div class="container my-5">
+            @yield('content')
+
+          </div>
+        </div>
       </main>
     </div>
   </body>
