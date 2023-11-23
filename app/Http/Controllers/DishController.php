@@ -92,7 +92,6 @@ class DishController extends Controller
     {
         $dishDetail = $dish;
         
-        
         return view('admin.dishes.show', compact('dishDetail'));
     }
 
@@ -104,8 +103,10 @@ class DishController extends Controller
      */
     public function edit(Dish $dish)
     {
-        $data = $dish;
-       return view('admin.dishes.edit', compact('data'));
+        $dishDetail = $dish;
+        $courses = Course::select('id','name')->get();
+
+       return view('admin.dishes.edit', compact('dishDetail', 'courses'));
     }
 
     /**
