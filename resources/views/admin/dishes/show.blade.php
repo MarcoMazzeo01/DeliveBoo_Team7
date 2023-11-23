@@ -6,8 +6,8 @@
 <div class="container mt-5">
   <a class="btn btn-primary" href="{{route('admin.dish.index')}}">Torna al menù</a>
     <div class="card {{$dishDetail->visible ? '' : 'border-danger'}} border-2" >
-        <img src="{{asset('/storage/' . $dishDetail->image)}}" class="card-img-top py-3" alt="...">
-        
+        <img src="{{$dishDetail->image ? $dishDetail->image : 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/310px-Placeholder_view_vector.svg.png'}}" class="card-img-top py-3" alt="...">
+      
         <div class="card-body">
           <h5 class="card-title">{{$dishDetail->name}}</h5>
           <p class="card-text">{{$dishDetail->description}}</p>
