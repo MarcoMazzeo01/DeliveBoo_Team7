@@ -29,7 +29,7 @@ class DishController extends Controller
      */
     public function create()
     {
-        $dish = Dish::select('name', 'price', 'visible', 'image', 'restaurant_id', 'course_id');
+        $dish = Dish::select('name', 'price', 'visible', 'image', 'course_id');
         
         return view('admin.dishes.create', compact('dish'));
 
