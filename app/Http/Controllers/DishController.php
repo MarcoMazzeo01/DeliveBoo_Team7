@@ -76,7 +76,6 @@ class DishController extends Controller
             $dish->image = $image_path;
         }
 
-       
         $dish->save();
 
        return redirect()->route('admin.dish.index')->with('success','dddd');
@@ -103,9 +102,10 @@ class DishController extends Controller
      * @param  int  $id
      ** @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Dish $dish)
     {
-        //
+        $data = $dish;
+       return view('admin.dishes.edit', compact('data'));
     }
 
     /**

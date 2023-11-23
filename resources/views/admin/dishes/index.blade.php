@@ -22,7 +22,7 @@
                                     <a href="{{ route('admin.dish.show', $dish) }}" class="me-2">
                                         <i class="fas fa-eye fa-lg"></i>
                                     </a>
-                                    <a href="#" class="me-2">
+                                    <a href="{{route('admin.dish.edit', $dish)}}" class="me-2">
                                         <i class="fas fa-pencil-alt fa-lg"></i>
                                     </a>
                                     <a href="#" class="me-2">
