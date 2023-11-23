@@ -8,7 +8,8 @@
     <div class="card {{$dishDetail->visible ? 'bg-light' : 'border-danger'}}">
         <div class="row g-0">
             <div class="col-md-4">
-                <img src="{{ $dishDetail->image ? $dishDetail->image : 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/310px-Placeholder_view_vector.svg.png' }}" class="card-img-top py-3" alt="Dish Image">
+                <img src="{{ asset('/storage/' . $dishDetail->image) }}">  
+                  
             </div>
             <div class="col-md-8">
                 <div class="card-body">

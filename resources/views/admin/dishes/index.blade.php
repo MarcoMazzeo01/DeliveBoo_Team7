@@ -17,7 +17,7 @@
                     <div class="card {{$dish->visible ? '' : 'border-danger'}}">
                         <div class="row g-0">
                             <div class="col-md-4">
-                                <img src="{{ $dish->image }}" class="img-fluid rounded-start" alt="Dish Image">
+                                <img src="{{ asset('/storage/' . $dish->image) }}" class="img-fluid rounded-start" alt="Dish Image">
                                 <div class="icons d-flex justify-content-center mt-3">
                                     <a href="{{ route('admin.dish.show', $dish) }}" class="me-2">
                                         <i class="fas fa-eye fa-lg"></i>
