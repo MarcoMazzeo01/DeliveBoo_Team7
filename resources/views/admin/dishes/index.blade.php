@@ -11,45 +11,45 @@
         <button class="mx-auto">crea un prodotto</button>
         <div class="row row-cols-3 justify-content-center">
             <div class="col">
-                @forelse ($dishes as $dish)
-                    @if ($dish->visible)
-                        <div class="card p-1" style="max-width: 540px;">
-                            <div class="row g-0">
-                                <div class="col-md-4">
-                                    <img src="{{ $dish->image }}" class="img-fluid rounded-start" alt="...">
+                @foreach ($dishes as $dish)
+                 
+                <div class="card p-1 {{$dish->visible ? '' : 'border-danger'}}" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="{{ $dish->image }}" class="img-fluid rounded-start" alt="...">
 
-                                    <div class="icons d-flex flex-column align-items-center gap-1 mt-1  ">
-                                        <a class="" href="{{ route('admin.dish.show', $dish) }}">
-                                            <i class="fa-solid fa-eye fa-lg"></i>
-                                        </a>
-                                        <a class="" href="#">
-                                            <i class="fa-solid fa-pencil fa-lg"></i>
-                                        </a>
-                                        <a class="" href="#">
-                                            <i class="fa-solid fa-trash fa-lg"></i>
-                                        </a>
-                                    </div>
+                            <div class="icons d-flex flex-column align-items-center gap-1 mt-1  ">
+                                <a class="" href="{{ route('admin.dish.show', $dish) }}">
+                                    <i class="fa-solid fa-eye fa-lg"></i>
+                                </a>
+                                <a class="" href="#">
+                                    <i class="fa-solid fa-pencil fa-lg"></i>
+                                </a>
+                                <a class="" href="#">
+                                    <i class="fa-solid fa-trash fa-lg"></i>
+                                </a>
+                            </div>
 
 
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body">
-                                        <h5 class="card-title">{{ $dish->name }}</h5>
-                                        <p class="card-text">{{ $dish->getAbsDescription() }}</p>
-                                        <p class="card-text"><small class="fw-bold">Pannello di controllo
-                                                {{ $dish->price }}€</small></p>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $dish->name }}</h5>
+                                <p class="card-text">{{ $dish->getAbsDescription() }}</p>
+                                <p class="card-text"><small class="fw-bold">Price: {{ $dish->price }}€</small></p>
+                                @if(!$dish->visible) 
+                                        <p class="card-text"><small class="fw-bold text-danger">Non disponibile</small></p>
+                                @endif
 
-                                    </div>
-                                </div>
                             </div>
                         </div>
-                    @endif
+                    </div>
+                </div>
+               
             </div>
-        @empty
-            <button>
-                'attualmente il tuo menu è vuoto! crea almeno un piatto!'
-            </button>
-            @endforelse
+        
+           
+            @endforeach
 
 
         </div>
