@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mt-5">
+
     <div class="row">
         <div class="col-4">
             
@@ -41,6 +41,7 @@
                         <label class="form-check-label" for="visible" >Disponibile</label>
                         
                     </div>
+                    
 
                     <select class="form-select @error('course_id') is-invalid @enderror" name="course_id">
                         <option value="" @if(empty(old('course_id'))) selected @endif >Tipo di portata</option>
@@ -48,6 +49,7 @@
                             <option value="{{$course->id}}" @if(old('course_id') == $course->id) selected @endif>{{$course->name}}</option>
                         @endforeach
                     </select>
+                    {{-- $dishDetail->course_id == $course->id --}}
 
 
                     @error('course_id')
@@ -69,7 +71,7 @@
             </form>
         </div>
     </div>
-</div>
+
 @endsection
 
     

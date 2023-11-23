@@ -104,6 +104,7 @@ class DishController extends Controller
     public function edit(Dish $dish)
     {
         $dishDetail = $dish;
+    //    dd($dishDetail);
         $courses = Course::select('id','name')->get();
 
        return view('admin.dishes.edit', compact('dishDetail', 'courses'));
