@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-4">
             
-            <img src="" alt="" id="image_preview" class="img-fluid">
+            <img src="{{asset('/storage/' . $dishDetail->image)}}" alt="" id="image_preview" class="img-fluid">
         </div>
         <div class="col-8">
             <form action="{{route('admin.dish.update', $dishDetail)}}" method="POST" enctype="multipart/form-data">
@@ -80,7 +80,7 @@
 @endsection
 
 @section('script')
-{{-- <script type="text/javascript">
+<script type="text/javascript">
     
     const imagePreview = document.getElementById('image_preview');
     const image = document.getElementById('image');
@@ -90,5 +90,5 @@
         imagePreview.src = URL.createObjectURL(file);
     })
     
-</script> --}}
+</script>
 @endsection
