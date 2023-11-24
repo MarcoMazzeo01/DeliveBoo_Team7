@@ -49,10 +49,10 @@
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">Annulla</button>
                                                 {{-- Delete Form --}}
-                                                {{-- <form action="{{route('admin.restaurant.destroy', $dish)}}" method="POST" class="mx-1"> --}}
+                                                <form action="{{route('admin.dish.destroy', $dish)}}" method="POST" class="mx-1">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button class="btn btn-danger">Conferma</button>
+                                                    <button class="btn btn-danger">Conferma</button>
                                                 </form>
                                             </div>
                                         </div>
