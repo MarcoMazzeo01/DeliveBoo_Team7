@@ -10,10 +10,13 @@
  
         <div class="d-flex justify-content-between">
             <h1 class="menu-title">MENÙ</h1>
-            <a class="btn btn-dark mb-3" href="{{ route('admin.dish.create') }}">Crea un prodotto</a>
+            
+            <a class="btn btn-dark mb-3" href="{{ route('admin.dish.create') }}">Crea un Piatto</a>
+                 
         </div>
 
         <div class="row row-cols-1 row-cols-md-3 g-4">
+
             @foreach ($dishes as $dish)
                 <div class="col">
                     <div class="card dish-card {{$dish->visible ? '' : 'border-danger'}}">
