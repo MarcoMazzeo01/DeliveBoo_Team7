@@ -11,7 +11,7 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card">
-                <img src="{{ asset('/storage/' . $restaurantDetail->image) }}" class="card-img-top" alt="Restaurant Image">
+                <img src="{{ asset('/storage/' . $restaurantDetail->image) }}" class="card-img-top {{ $restaurantDetail->image ? '' : 'invisible'}}" alt="Restaurant Image">
 
                 <div class="card-body">
                     <h5 class="card-title">{{ $restaurantDetail->name }}</h5>
