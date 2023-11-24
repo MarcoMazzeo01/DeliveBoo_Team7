@@ -69,7 +69,7 @@ class RegisteredUserController extends Controller
 
         if ($request->hasFile('image')) {
             $restaurantIdString = strval($restaurant->id);
-            $image_path = $request->file('image')->store('uploads/restaurant_id' . $restaurantIdString);
+            $image_path = $request->file('image')->store('uploads/restaurant_id_' . $restaurantIdString);
             $restaurantDetail = $restaurant;
             $restaurantDetail->image = $image_path;
             $restaurantDetail->save();
