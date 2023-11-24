@@ -164,6 +164,14 @@ class DishController extends Controller
      */
     public function destroy(Dish $dish)
     {
+        dd($dish);
+
+        if(Arr::exists($dish,'image')){
+
+            Storage::delete($dish->image);
+        }
+            
+
         $dish->delete();
         return redirect()->route('admin.dish.index');
     }
