@@ -38,7 +38,7 @@ class DishSeeder extends Seeder
             $dish->description = $faker->paragraphs(3, true);
             $dish->price = $faker->randomfloat(2, 1, 999);
             $dish->visible = $faker->boolean();
-            $dish->image = $faker->imageUrl(360, 360, null, true);
+            // $dish->image = $faker->imageUrl(360, 360, null, true);
 
             $dish->save();
         }

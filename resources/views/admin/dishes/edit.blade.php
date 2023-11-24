@@ -9,8 +9,9 @@
                 <img src="" alt="" id="image_preview" class="img-fluid">
             </div>
             <div class="col-8">
-                <form action="{{route('admin.dish.store')}}" method="POST" enctype="multipart/form-data">
+                <form action="{{route('admin.dish.update', $dishDetail)}}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    @method('PATCH')
                         
                     <div class="mb-3">
                         <label for="name" class="form-label" >Nome del piatto</label>
@@ -47,7 +48,7 @@
                             <option value="" @if(empty(old('course_id'))) selected  @endif >Tipo di portata</option>
                             @foreach($courses as $course)
                             
-                                <option value="{{$course->id}}" @if((old('course_id') == $course->id) || $course->id == $dishDetail->course_id) selected @endif>{{$course->name}}</option>
+                                <option value="{{$course->id}}" @if((old('course_id') == $course->id || $course->id == $dishDetail->course_id)) selected @endif>{{$course->name}}</option>
                             @endforeach
                         </select>
 

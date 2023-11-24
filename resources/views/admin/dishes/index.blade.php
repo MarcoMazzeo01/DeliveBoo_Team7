@@ -17,7 +17,10 @@
             @foreach ($dishes as $dish)
                 <div class="col">
                     <div class="card dish-card {{$dish->visible ? '' : 'border-danger'}}">
-                        <img src="{{ asset('/storage/' . $dish->image) }}" class="card-img-top dish-image {{$dish->image ? '' : 'd-none'}}" alt="Dish Image">
+                        @if($dish->image)
+                            <img src="{{ asset('/storage/' . $dish->image) }}" class="card-img-top dish-image" alt="Dish Image">
+                        @endif
+                        
                         <div class="card-body">
                             <h5 class="card-title">{{ $dish->name }}</h5>
                             <p class="card-text">{{ $dish->getAbsDescription() }}</p>
