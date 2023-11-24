@@ -46,8 +46,8 @@
                         <select class="form-select @error('course_id') is-invalid @enderror" name="course_id">
                             <option value="" @if(empty(old('course_id'))) selected  @endif >Tipo di portata</option>
                             @foreach($courses as $course)
-                            @dd($course);
-                                <option value="{{$course->id}}" @if(old('course_id') == $course->id) selected @endif>{{$course->name}}</option>
+                            
+                                <option value="{{$course->id}}" @if((old('course_id') == $course->id) || $course->id == $dishDetail->course_id) selected @endif>{{$course->name}}</option>
                             @endforeach
                         </select>
 
