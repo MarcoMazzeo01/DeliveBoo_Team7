@@ -12,7 +12,6 @@
             <h1 class="menu-title">MENÙ</h1>
             <a class="btn btn-dark mb-3" href="{{ route('admin.dish.create') }}">Crea un prodotto</a>
         </div>
-        </div>
 
         <div class="row row-cols-1 row-cols-md-3 g-4">
             @foreach ($dishes as $dish)
@@ -42,5 +41,5 @@
                     </div>
                 </div>
             @endforeach
-        </div>
+        </div>   
 @endsection
