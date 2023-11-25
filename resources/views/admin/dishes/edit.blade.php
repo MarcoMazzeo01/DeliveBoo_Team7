@@ -19,7 +19,7 @@
                         
                     <div class="mb-3">
                         <label for="name" class="form-label" >Nome del piatto *</label>
-                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{old('name', $dishDetail->name)}}">
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{old('name', $dishDetail->name)}}" required>
                         @error('name')
                             <div class="invalid-feedback">
                                 {{$message}}
@@ -28,7 +28,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="price" class="form-label" >Inserisci il prezzo *</label>
-                        <input  type="number" step="0.01" min="0" class="form-control @error('price') is-invalid @enderror" id="price" name="price" value="{{old('price', $dishDetail->price)}}">
+                        <input  type="number" step="0.01" min="0" class="form-control @error('price') is-invalid @enderror" id="price" name="price" value="{{old('price', $dishDetail->price)}}" required>
                         @error('price')
                             <div class="invalid-feedback">
                                 {{$message}}
@@ -48,7 +48,7 @@
                             
                         </div>
 
-                        <select class="form-select @error('course_id') is-invalid @enderror" name="course_id">
+                        <select class="form-select @error('course_id') is-invalid @enderror" name="course_id" required>
                             <option value="" @if(empty(old('course_id'))) selected  @endif >Tipo di portata *</option>
                             @foreach($courses as $course)
                             
@@ -65,7 +65,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="description" class="form-label ">Aggiungi una descrizione *</label>
-                        <textarea name="description" id="description" class="form-control @error('description') is-invalid @enderror" cols="50" rows="5">{{old('description', $dishDetail->description)}}</textarea>
+                        <textarea name="description" id="description" class="form-control @error('description') is-invalid @enderror" cols="50" rows="5" required>{{old('description', $dishDetail->description)}}</textarea>
                     </div>
                     @error('description')
                         <div class="invalid-feedback">
