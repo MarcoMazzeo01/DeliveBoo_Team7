@@ -63,6 +63,24 @@
                                 </div>
                             </div>
 
+                            <!-- Add validation for email field -->
+                            <div class="mb-4 row">
+                                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }}
+                                    *</label>
+
+                                <div class="col-md-6">
+                                    <input id="email" type="email"
+                                        class="form-control @error('email') is-invalid @enderror" name="email"
+                                        value="{{ old('email') }}" required autocomplete="email">
+
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
                             <!-- Add validation for restaurant name field -->
                             <div class="mb-4 row">
                                 <label for="restaurant_name"
@@ -82,23 +100,6 @@
                                 </div>
                             </div>
 
-                            <!-- Add validation for email field -->
-                            <div class="mb-4 row">
-                                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }}
-                                    *</label>
-
-                                <div class="col-md-6">
-                                    <input id="email" type="email"
-                                        class="form-control @error('email') is-invalid @enderror" name="email"
-                                        value="{{ old('email') }}" required autocomplete="email">
-
-                                    @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
 
                             <!-- Add validation for address field -->
                             <div class="mb-4 row">
