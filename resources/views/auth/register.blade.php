@@ -219,14 +219,24 @@
             <div class="col-md-8">
 
                 <div class="card">
-                    <div class="card-header">{{ __('Form di registrazione Deliveboo') }}</div>
+                    <div class="card-header">{{ __('Inizia a vendere con Deliveboo') }}</div>
                     <div class="alert alert-warning m-3" role="alert">
                         * Campi obbligatori
                     </div>
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            Correggi i seguenti errori:
+
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data"
-                            onsubmit="return validateForm()">
+                        <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                             @csrf
 
                             <div class="mb-4 row">
