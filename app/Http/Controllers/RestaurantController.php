@@ -10,7 +10,7 @@ class RestaurantController extends Controller
      *
      ** @return \Illuminate\Http\Response
      */
-    public function show()
+    public function index()
     {   
         $user = auth()->user();
         $restaurantDetail = $user->restaurant;
