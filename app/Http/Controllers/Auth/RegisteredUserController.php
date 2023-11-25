@@ -35,15 +35,36 @@ class RegisteredUserController extends Controller
     {
         $types = Type::all();
         $request->validate([
-            // 'restaurant_name' => ['required', 'string', 'max:255'],
-            // 'address' => ['required', 'string', 'max:255'],
-            // 'vat' => ['required', 'string', 'max:255'],
-            // 'description' => ['required', 'text'],
-            // 'image' => ['nullable', 'string', 'max:512'],
+            'restaurant_name' => ['required', 'string', 'max:255'],
+            'address' => ['required', 'string', 'max:255'],
+            'vat' => ['required', 'regex:/^[0-9]{11}$/'],
+            'description' => ['required', 'string'],
+            'image' => ['nullable', 'image', 'max:512'],
             'name' => ['required', 'string', 'max:255'],
             'surname' => ['required', 'string', 'max:255'],
+            'types' => ['required', 'array', 'min:1'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ], [
+            'restaurant_name.required' => 'Il nome del ristorante è obbligatorio.',
+            'address.required' => 'L\'indirizzo del ristorante è obbligatorio.',
+            'vat.required' => 'Il campo P.Iva è obbligatorio.',
+            'vat.regex' => 'La P.Iva deve essere composta da 11 cifre numeriche.',
+            'description.required' => 'La descrizione del ristorante è obbligatoria.',
+            'image.image' => 'Il file caricato deve essere un\'immagine valida.',
+            'image.max' => 'Il file immagine non può superare 512 KB.',
+            'name.required' => 'Il nome è obbligatorio.',
+            'name.string' => 'Il nome è una stringa.',
+            'types.required' => 'Seleziona almeno un tipo di cucina.',
+            'types.min' => 'Seleziona almeno un tipo di cucina.',
+            'surname.required' => 'Il cognome è obbligatorio.',
+            'email.required' => 'L\'indirizzo email è obbligatorio.',
+            'email.email' => 'L\'indirizzo email deve essere valido.',
+            'email.max' => 'L\'indirizzo email non può superare 255 caratteri.',
+            'email.unique' => 'L\'indirizzo email è già stato utilizzato.',
+            'password.required' => 'La password è obbligatoria.',
+            'password.confirmed' => 'Le password non corrispondono.',
+            'password.min' => 'La password deve contenere almeno :min caratteri.',
         ]);
 
         $user = User::create([
