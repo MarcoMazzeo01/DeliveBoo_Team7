@@ -36,10 +36,8 @@
               
               <li class="nav-item">
 
-                <a class="nav-link" href="{{ route('admin.restaurant.index') }}">My Restaurant</a>
+                <a class="nav-link" href="{{ route('admin.restaurant') }}">My Restaurant</a>
               </li>
-
-
 
               <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                 @csrf
@@ -48,10 +46,7 @@
           </li>
         @endguest
       </ul>
-      {{-- <form class="d-flex my-2 my-lg-0">
-        <input class="form-control me-sm-2" type="text" placeholder="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form> --}}
+  
     </div>
   </div>
 </nav>

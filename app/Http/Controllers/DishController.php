@@ -5,6 +5,7 @@ use App\Models\Dish;
 use App\Models\Course;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\support\Arr;
 
 use App\Http\Requests\StoreDishRequest;
@@ -54,7 +55,7 @@ class DishController extends Controller
     {
         
         $user = auth()->user();
-        $_restaurant_id = $user->restaurant->id;
+        
     
         $data = $request->validated();
         $dish = new Dish;
@@ -63,7 +64,7 @@ class DishController extends Controller
         $dish->price = $data['price'];
         $dish->course_id = $data['course_id'];
         $dish->description = $data['description'];
-        $dish->restaurant_id = $_restaurant_id;
+        $dish->restaurant_id = $user->restaurant->id;
         
 
         if(Arr::exists($data,'visible')){
@@ -74,7 +75,7 @@ class DishController extends Controller
         }
         
         if(Arr::exists($data,'image')){
-            $image_path = Storage::put('uploads/restaurant_id_' . $_restaurant_id . '/dishes', $data['image']);
+            $image_path = Storage::put('uploads/restaurant_id_' . $dish->restaurant_id . '/dishes', $data['image']);
             $dish->image = $image_path;
         } 
         $dish->save();
@@ -91,6 +92,12 @@ class DishController extends Controller
      */
     public function show(Dish $dish)
     {
+        
+       if(Auth::user()->id !== $dish->restaurant_id){
+        
+        return redirect()->back();
+       }
+
         $dishDetail = $dish;
         $placeholder = 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/310px-Placeholder_view_vector.svg.png';
         return view('admin.dishes.show', compact('dishDetail', 'placeholder'));
@@ -104,6 +111,12 @@ class DishController extends Controller
      */
     public function edit(Dish $dish)
     {
+
+        if(Auth::user()->id !== $dish->restaurant_id){
+        
+            return redirect()->back();
+           }
+           
         $dishDetail = $dish;
         $placeholder = 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/310px-Placeholder_view_vector.svg.png';
        
@@ -124,13 +137,13 @@ class DishController extends Controller
         $data = $request->validated();
         
         $user = auth()->user();
-        $_restaurant_id = $user->restaurant->id;
-
+        
         $dish->name = $data['name'];
         $dish->price = $data['price'];
         $dish->course_id = $data['course_id'];
         $dish->description = $data['description'];
-        $dish->restaurant_id = $_restaurant_id;
+        $dish->restaurant_id = $user->restaurant->id;
+      
 
         if(Arr::exists($data,'visible')){
             $dish->visible = $data['visible'];
@@ -146,7 +159,7 @@ class DishController extends Controller
             }
 
             
-            $image_path = Storage::put('uploads/restaurant_id ' . $_restaurant_id . '/dishes', $data['image']);
+            $image_path = Storage::put('uploads/restaurant_id_' . $dish->restaurant_id . '/dishes', $data['image']);
             $dish->image = $image_path;
         }
 
