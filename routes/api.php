@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\Api\RestaurantController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+
+use App\Models\Dish;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,3 +20,14 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::apiResource("restaurant", RestaurantController::class)->only(["index","show"]);
+
+// Route::get('/restaurant/{id}/dishes', function ($id) {
+
+   
+//     $dishes = Dish::where('restaurant_id', $id)->where('visible', 1)->get();
+    
+
+//     return response()->json($dishes);
+// });
