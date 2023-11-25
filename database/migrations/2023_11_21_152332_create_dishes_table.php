@@ -19,6 +19,7 @@ return new class extends Migration {
             $table->decimal("price", 10, 2, true);
             $table->boolean("visible");
             $table->text("image")->nullable();
+            $table->softdeletes();
             $table->timestamps();
         });
     }

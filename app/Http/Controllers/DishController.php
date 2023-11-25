@@ -75,7 +75,7 @@ class DishController extends Controller
         }
         
         if(Arr::exists($data,'image')){
-            $image_path = Storage::put('uploads/restaurant_id_' . $_restaurant_id . '/dishes', $data['image']);
+            $image_path = Storage::put('uploads/restaurant_id_' . $dish->restaurant_id . '/dishes', $data['image']);
             $dish->image = $image_path;
         } 
         $dish->save();
