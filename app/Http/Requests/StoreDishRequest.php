@@ -26,7 +26,7 @@ class StoreDishRequest extends FormRequest
         return [            
             "course_id" => 'required|present',       
             "name" => 'required|string|max:30',
-            "price" => 'required|numeric',
+            "price" => 'required|numeric|min:0',
             "image" => 'image|max:512',
             "description" => 'required',
             "visible" => 'nullable'
@@ -47,6 +47,7 @@ class StoreDishRequest extends FormRequest
 
             "price.required" => 'Campo è obbligatorio',
             "price.numeric" => 'Il prezzo non può contenere lettere e/o simboli',
+            "price.min" => 'il prezzo del piatto non può essere negativo',
 
             "image.image" => "Il file nn è una immagine",
             "image.max" => "peso massimo axccetato 512 kb",
