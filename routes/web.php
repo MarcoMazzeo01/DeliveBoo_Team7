@@ -1,5 +1,6 @@
 <?php
 
+// use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\DishController;
 use Illuminate\Support\Facades\Route;
@@ -29,7 +30,9 @@ Route::middleware(['auth', 'verified'])
     Route::get('/', [AdminPageController::class, 'index'])->name('home');
 
     // CRUD restaurantController
-    Route::resource('restaurant', RestaurantController::class)->only(['index', 'show']);
+    // Route::resource('restaurant', RestaurantController::class)->only(['index', 'show']);
+
+    Route::get('/restaurant', [RestaurantController::class, 'show'])->name('restaurant');
 
   // CRUD dishController
     Route::resource('dish', DishController::class);

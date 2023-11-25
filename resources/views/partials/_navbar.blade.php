@@ -36,10 +36,8 @@
               
               <li class="nav-item">
 
-                <a class="nav-link" href="{{ route('admin.restaurant.index') }}">My Restaurant</a>
+                <a class="nav-link" href="{{ route('admin.restaurant') }}">My Restaurant</a>
               </li>
-
-
 
               <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                 @csrf
