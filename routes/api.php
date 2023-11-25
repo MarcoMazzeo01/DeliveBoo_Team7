@@ -1,11 +1,10 @@
 <?php
 
-use App\Http\Controllers\Api\RestaurantController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-
-use App\Models\Dish;
+use App\Http\Controllers\Api\RestaurantController;
+use App\Http\Controllers\Api\DishController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -23,11 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::apiResource("restaurant", RestaurantController::class)->only(["index","show"]);
 
-// Route::get('/restaurant/{id}/dishes', function ($id) {
+// Route::apiResource('/restaurant/{id}/dishes', Dishcontroller::class)->only(["index", "show"]); 
 
    
-//     $dishes = Dish::where('restaurant_id', $id)->where('visible', 1)->get();
-    
-
-//     return response()->json($dishes);
-// });

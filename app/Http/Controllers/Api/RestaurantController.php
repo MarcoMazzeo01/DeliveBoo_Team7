@@ -12,13 +12,17 @@ class RestaurantController extends Controller
 {
     public function index(){
 
-        $restaurants = Restaurant::select('id','restaurant_name', 'description', 'image', 'address',)->get();
+        $restaurants = Restaurant::select('id','restaurant_name', 'description', 'image', 'address')
+        ->with('types')->get();
+        
+        
+        
         
         return response()->json($restaurants);
     }
 
-    public function show(Restaurant $restaurant){
-        $restaurant = Restaurant::select('id','restaurant_name', 'description', 'image', 'address',)->where('id', $restaurant->id)->first();
+    public function show($id){
+        $restaurant = Restaurant::select('id','restaurant_name', 'description', 'image', 'address',)->with('dishes', 'types', 'courses')->where('id', $id)->first();
     return response()->json($restaurant);
     }
 }
