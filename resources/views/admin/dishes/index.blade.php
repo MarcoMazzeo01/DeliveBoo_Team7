@@ -20,9 +20,10 @@
             @foreach ($dishes as $dish)
                 <div class="col">
                     <div class="card dish-card {{$dish->visible ? '' : 'border-danger'}}">
-                        @if($dish->image)
-                            <img src="{{ asset('/storage/' . $dish->image) }}" class="card-img-top dish-image" alt="Dish Image">
-                        @endif
+                        
+                        
+                        <img src="{{$dish->image ? asset('/storage/' . $dish->image) : $placeholder}}" class="card-img-top dish-image" alt="Dish Image">
+                        
                         
                         <div class="card-body">
                             <h5 class="card-title">{{ $dish->name }}</h5>

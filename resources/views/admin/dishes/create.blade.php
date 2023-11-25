@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-4">
             
-            <img src="" alt="" id="image_preview" class="img-fluid">
+            <img src="{{$placeholder}}" alt="" id="image_preview" class="img-fluid">
         </div>
         <div class="col-8">
             <form action="{{route('admin.dish.store')}}" method="POST" enctype="multipart/form-data">

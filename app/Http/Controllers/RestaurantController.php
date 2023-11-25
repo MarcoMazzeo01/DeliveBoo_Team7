@@ -25,8 +25,9 @@ class RestaurantController extends Controller
     {
         
         $restaurantDetail = $restaurant;
+        $placeholder = 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/310px-Placeholder_view_vector.svg.png';
         
-        return view('admin.restaurants.show', compact('restaurantDetail'));
+        return view('admin.restaurants.show', compact('restaurantDetail', 'placeholder'));
     }
 
 }

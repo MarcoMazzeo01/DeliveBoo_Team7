@@ -11,10 +11,10 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card">
-                @if($restaurantDetail->image)
                 
-                    <img src="{{ asset('/storage/' . $restaurantDetail->image) }}" class="card-img-top" alt="Restaurant Image">
-                @endif
+                <img src="{{$restaurantDetail->image ? asset('/storage/' . $restaurantDetail->image) : $placeholder }}" class="card-img-top" alt="Restaurant Image">
+                
+                
                 <div class="card-body">
                     <h5 class="card-title">{{ $restaurantDetail->name }}</h5>
                     <p class="card-text"><b>Indirizzo: </b>{{ $restaurantDetail->address }}</p>

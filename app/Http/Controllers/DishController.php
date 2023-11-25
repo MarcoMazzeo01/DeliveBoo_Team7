@@ -25,7 +25,9 @@ class DishController extends Controller
         
         $dishes = Dish::where('restaurant_id', '=', $user->restaurant->id)->get();
         
-        return view("admin.dishes.index", compact('dishes'));
+        $placeholder = 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/310px-Placeholder_view_vector.svg.png';
+        
+        return view("admin.dishes.index", compact('dishes', 'placeholder'));
     }
 
     /**
@@ -37,8 +39,8 @@ class DishController extends Controller
     {
         $dish = Dish::select('name', 'price', 'visible', 'image', 'course_id', 'restaurant_id');
         $courses = Course::select('id','name')->get();      
-       
-        return view('admin.dishes.create', compact('dish', 'courses'));
+        $placeholder = 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/310px-Placeholder_view_vector.svg.png';
+        return view('admin.dishes.create', compact('dish', 'courses', 'placeholder'));
 
     }
 
@@ -64,7 +66,6 @@ class DishController extends Controller
         $dish->restaurant_id = $_restaurant_id;
         
 
-
         if(Arr::exists($data,'visible')){
             $dish->visible = $data['visible'];
 
@@ -75,8 +76,7 @@ class DishController extends Controller
         if(Arr::exists($data,'image')){
             $image_path = Storage::put('uploads/restaurant_id_' . $_restaurant_id . '/dishes', $data['image']);
             $dish->image = $image_path;
-        }
-
+        } 
         $dish->save();
 
        return redirect()->route('admin.dish.index');
@@ -92,8 +92,8 @@ class DishController extends Controller
     public function show(Dish $dish)
     {
         $dishDetail = $dish;
-        
-        return view('admin.dishes.show', compact('dishDetail'));
+        $placeholder = 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/310px-Placeholder_view_vector.svg.png';
+        return view('admin.dishes.show', compact('dishDetail', 'placeholder'));
     }
 
     /**
@@ -105,10 +105,11 @@ class DishController extends Controller
     public function edit(Dish $dish)
     {
         $dishDetail = $dish;
-  
+        $placeholder = 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/310px-Placeholder_view_vector.svg.png';
+       
         $courses = Course::select('id','name')->get();
 
-       return view('admin.dishes.edit', compact('dishDetail', 'courses'));
+       return view('admin.dishes.edit', compact('dishDetail', 'courses', 'placeholder'));
     }
 
     /**

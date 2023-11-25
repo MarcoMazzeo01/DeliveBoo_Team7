@@ -12,9 +12,9 @@
 
         <div class="card bg-light {{$dishDetail->visible ? '' : 'border-danger'}} custom-card">
             <div class="row g-0">
-                <div class="col-md-4 {{$dishDetail->image ? '' : 'd-none'}}">
-                    <img src="{{ asset('/storage/' . $dishDetail->image) }}" class="img-fluid rounded-start" alt="Dish Image">
-                </div>
+                
+                <img src="{{ $dishDetail->image ? asset('/storage/' . $dishDetail->image) : $placeholder}}" class="img-fluid rounded-start" alt="Dish Image">
+                
                 <div class="col-md-8">
                     <div class="card-body">
                         <h3 class="card-title">{{ $dishDetail->name }}</h3>
