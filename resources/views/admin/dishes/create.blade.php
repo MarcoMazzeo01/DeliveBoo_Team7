@@ -3,16 +3,20 @@
 @section('content')
 
     <div class="row">
+        
         <div class="col-4">
             
             <img src="{{$placeholder}}" alt="" id="image_preview" class="img-fluid">
         </div>
         <div class="col-8">
+            <div class="alert alert-warning" role="alert">
+                * Campi obbligatori
+              </div>
             <form action="{{route('admin.dish.store')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                     
                 <div class="mb-3">
-                    <label for="name" class="form-label" >Nome del piatto</label>
+                    <label for="name" class="form-label" >Nome del piatto *</label>
                     <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{old('name', '')}}">
                     @error('name')
                         <div class="invalid-feedback">
@@ -21,7 +25,7 @@
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label for="price" class="form-label" >Inserisci il prezzo</label>
+                    <label for="price" class="form-label" >Inserisci il prezzo *</label>
                     <input type="text" class="form-control @error('price') is-invalid @enderror" id="price" name="price" value="{{old('price', '')}}">
                     @error('price')
                         <div class="invalid-feedback">
@@ -44,12 +48,11 @@
                     
 
                     <select class="form-select @error('course_id') is-invalid @enderror" name="course_id">
-                        <option value="" @if(empty(old('course_id'))) selected @endif >Tipo di portata</option>
+                        <option value="" @if(empty(old('course_id'))) selected @endif >Tipo di portata *</option>
                         @foreach($courses as $course)
                             <option value="{{$course->id}}" @if(old('course_id') == $course->id) selected @endif>{{$course->name}}</option>
                         @endforeach
                     </select>
-                    {{-- $dishDetail->course_id == $course->id --}}
 
 
                     @error('course_id')
@@ -59,7 +62,7 @@
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label for="description" class="form-label ">Aggiungi una descrizione</label>
+                    <label for="description" class="form-label ">Aggiungi una descrizione *</label>
                     <textarea name="description" id="description" class="form-control @error('description') is-invalid @enderror" cols="50" rows="5">{{old('description', '')}}</textarea>
                 </div>
                 @error('description')
