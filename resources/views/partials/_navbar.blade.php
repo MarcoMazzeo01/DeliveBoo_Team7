@@ -8,19 +8,20 @@
         <div class="collapse navbar-collapse" id="collapsibleNavId">
             <ul class="navbar-nav justify-content-between w-100 mt-2 mt-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link text-light {{ Route::currentRouteName() == 'guest.home' ? 'active' : '' }}"
+                    <a class="nav-link text-light fw-bold {{ Route::currentRouteName() == 'guest.home' ? 'active' : '' }}"
                         href="{{ route('guest.home') }}" aria-current="page">Deliveboo <i class='ms-2 fas fa-motorcycle'
                             style='font-size:18px; color:white'></i><span class="visually-hidden">(current)</span></a>
                 </li>
                 @guest
                     <div class="d-flex">
                         <li class="nav-item">
-                            <a class="nav-link text-light" href="{{ route('login') }}">{{ __('Login') }} <i
+                            <a class="nav-link text-light fw-bold" href="{{ route('login') }}">{{ __('Login') }} <i
                                     class="fa-solid fa-user ms-1" me-2></i></a>
                         </li>
                         @if (Route::has('register'))
                             <li class="nav-item">
-                                <a class="nav-link text-light" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                <a class="nav-link text-light fw-bold"
+                                    href="{{ route('register') }}">{{ __('Register') }}</a>
                             </li>
                         @endif
                     @else

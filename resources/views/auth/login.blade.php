@@ -20,7 +20,7 @@
 
 @section('content')
     <div class="row custom_container justify-content-center">
-        <div class="overlay">
+        <div class="overlay col-6 col-md-8">
             <h2 class="text-light text-center">Bentornato nel servizio di consegne a domicilio leader in Europa! Cosa aspetti
                 ad
                 accedere?</h2>

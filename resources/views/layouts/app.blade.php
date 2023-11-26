@@ -29,7 +29,7 @@
 
         <main class="">
             <div class="container">
-                <div class="container my-5">
+                <div class="container mt-5">
                     @yield('content')
 
                 </div>
