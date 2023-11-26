@@ -1,7 +1,16 @@
 @extends('layouts.app')
 
+@section('icons')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+@endsection
+
 @section('content')
-  <section class="container mt-5">
-    <h1>{{ $title }}</h1>
-  </section>
+    <section class="container mt-5 text-center">
+        <h1>Deliveboo, piattaforma leader nelle consegne a domicilio</h1>
+        <h2>Non sei ancora nostro partner? Registrati ora</h2>
+        <a class="btn fw-bold custom_button" href="{{ route('register') }}">{{ __('Inizia') }}</a>
+
+    </section>
 @endsection

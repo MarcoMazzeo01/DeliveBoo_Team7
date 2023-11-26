@@ -82,8 +82,6 @@ class RegisteredUserController extends Controller
             'image' => $request->image,
         ]);
 
-        // $image_path = Storage::put('uploads/restaurant_id ' . $restaurant->id, $restaurant['image']);
-        // $restaurant->image = $image_path;
         $user->restaurant()->save($restaurant);
 
         $restaurant->types()->attach($request->types);

@@ -21,7 +21,7 @@
                         @if (Route::has('register'))
                             <li class="nav-item">
                                 <a class="nav-link text-light fw-bold"
-                                    href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    href="{{ route('register') }}">{{ __('Diventa partner') }}</a>
                             </li>
                         @endif
                     @else

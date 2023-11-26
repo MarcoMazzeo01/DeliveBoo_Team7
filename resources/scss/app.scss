@@ -85,6 +85,17 @@ main {
     border-radius: 20px;
 }
 
+.custom_button {
+    background-color: #f36d00;
+    color: #fff;
+}
+
+.custom_button:hover {
+    background-color: #fff;
+    color: #f36d00;
+    border: 1px solid black;
+}
+
 // .dish-icons a {
 // color: #777;
 // transition: color 0.3s ease-in-out;
