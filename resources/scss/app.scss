@@ -41,6 +41,17 @@ img {
     }
 }
 
+main {
+    padding-top: 60px;
+}
+
+.customer_nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+}
 // .dish-icons a {
 // color: #777;
 // transition: color 0.3s ease-in-out;
