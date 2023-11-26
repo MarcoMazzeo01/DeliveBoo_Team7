@@ -16,7 +16,7 @@
                 
                 
                 <div class="card-body">
-                    <h5 class="card-title">{{ $restaurantDetail->name }}</h5>
+                    <h5 class="card-title">{{ $restaurantDetail->restaurant_name }}</h5>
                     <p class="card-text"><b>Indirizzo: </b>{{ $restaurantDetail->address }}</p>
                     <p class="card-text"><b>Tipologia: </b>{!! $restaurantDetail->getTypeBadge() !!}</p>
                     <p class="card-text {{ !$restaurantDetail->vat ? 'text-danger' : '' }}"> <b>P. Iva:</b>
