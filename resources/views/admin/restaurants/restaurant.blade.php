@@ -7,14 +7,15 @@
 @endsection
 
 @section('content')
-    <h2> Dettagli ristorante </h2>
+    <h2 style="color: #f36d00"> Dettagli ristorante </h2>
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card">
-                
-                <img src="{{$restaurantDetail->image ? asset('/storage/' . $restaurantDetail->image) : $placeholder }}" class="card-img-top" alt="Restaurant Image">
-                
-                
+
+                <img src="{{ $restaurantDetail->image ? asset('/storage/' . $restaurantDetail->image) : $placeholder }}"
+                    class="card-img-top" alt="Restaurant Image">
+
+
                 <div class="card-body">
                     <h5 class="card-title">{{ $restaurantDetail->restaurant_name }}</h5>
                     <p class="card-text"><b>Indirizzo: </b>{{ $restaurantDetail->address }}</p>
@@ -23,7 +24,8 @@
                         {{ $restaurantDetail->vat ?? 'VAT non inserito' }}
                     </p>
                     <p class="card-text"> <b>Descrizione: </b>{{ $restaurantDetail->description }}</p>
-                    <a href="{{ route('admin.dish.index') }}" class="btn btn-dark">Menù <i class="fa-solid fa-utensils"></i>
+                    <a href="{{ route('admin.dish.index') }}" class="btn custom_button">Menù <i
+                            class="fa-solid fa-utensils"></i>
                     </a>
                 </div>
             </div>

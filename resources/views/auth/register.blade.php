@@ -26,8 +26,8 @@
         </div>
         <div class="col-8 col-md-8">
             <div class="card">
-                <div class="card-header fw-bold">{{ __('Inizia a vendere con Deliveboo') }} <i
-                        class='ms-2 fas fa-motorcycle' style='font-size:18px'></i></div>
+                <div class="card-header fw-bold" style='color: #f36d00'>{{ __('Inizia a vendere con Deliveboo') }} <i
+                        class='fas fa-motorcycle' style='font-size:18px; color: #f36d00'></i></div>
                 <div class="alert alert-warning m-3" role="alert">
                     * Campi obbligatori
                 </div>
@@ -114,13 +114,15 @@
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}
                                 *</label>
 
-                            <div class="col-md-6">
+                            <div class="col-md-6 d-flex align-items-center">
                                 <input id="password" type="password"
-                                    class="form-control @error('password') is-invalid @enderror" name="password" required
-                                    autocomplete="new-password"
+                                    class="form-control @error('password') is-invalid @enderror me-2" name="password"
+                                    required autocomplete="new-password"
                                     pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
                                     title="La password deve contenere almeno 8 caratteri, una lettera maiuscola, un numero e un carattere speciale"
                                     placeholder="Inserisci password">
+                                <span id="show-password" onclick="togglePassword('password', 'show-password')"><i
+                                        class="fa-solid fa-eye"></i></span>
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -135,12 +137,21 @@
                             <label for="password-confirm"
                                 class="col-md-4 col-form-label text-md-right">{{ __('Conferma Password') }} *</label>
 
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control"
+                            <div class="col-md-6 d-flex align-items-center">
+                                <input id="password-confirm" type="password"
+                                    class="form-control @error('password-confirm') is-invalid @enderror me-2"
                                     name="password_confirmation" required autocomplete="new-password"
                                     pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
                                     title="La password deve contenere almeno 8 caratteri, una lettera maiuscola, un numero e un carattere speciale"
                                     placeholder="Conferma password">
+                                <span id="show-password-confirmation"
+                                    onclick="togglePassword('password-confirm', 'show-password-confirmation')"><i
+                                        class="fa-solid fa-eye"></i></span>
+                                @error('password_confirmation')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 
@@ -264,8 +275,8 @@
 
                         <div class="mb-4 row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Registrati') }}
+                                <button type="submit" class="btn btn-primary custom_button">
+                                    {{ __('Registrati') }} <i class="fa-solid fa-paper-plane"></i>
                                 </button>
                             </div>
                         </div>
@@ -274,4 +285,21 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script type="text/javascript">
+        function togglePassword(inputId, buttonId) {
+            let passwordInput = document.getElementById(inputId);
+            let showPasswordButton = document.getElementById(buttonId);
+
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                showPasswordButton.innerHTML = '<i class="fa-solid fa-eye"></i>';
+            } else {
+                passwordInput.type = "password";
+                showPasswordButton.innerHTML = '<i class="fa-solid fa-eye"></i>';
+            }
+        }
+    </script>
 @endsection

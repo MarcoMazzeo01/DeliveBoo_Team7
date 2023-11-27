@@ -18,6 +18,7 @@ use App\Http\Controllers\Guest\PageController as GuestPageController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::view('/show-password', 'show-password');
 
 Route::get('/', [GuestPageController::class, 'index'])->name('guest.home');
 
@@ -31,10 +32,10 @@ Route::middleware(['auth', 'verified'])
 
 
     // Route::resource('restaurant', RestaurantController::class)->only(['index', 'show']);
-
+  
     Route::get('/restaurant', [RestaurantController::class, 'index'])->name('restaurant');
 
-  // CRUD dishController
+    // CRUD dishController
     Route::resource('dish', DishController::class);
   });
 
