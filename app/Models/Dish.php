@@ -15,7 +15,7 @@ class Dish extends Model
         return $this->belongsToMany(Order::class);
     }
 
-    public function restaurants()
+    public function restaurant()
     {
         return $this->belongsTo(Restaurant::class);
     }
@@ -25,18 +25,18 @@ class Dish extends Model
         return $this->belongsTo(Course::class);
     }
 
-    public function getAbsDescription($chars = 60){
+    public function getAbsDescription($chars = 60)
+    {
 
         $_description = $this->description;
-        return strlen( $_description) > $chars ? substr($_description, 0, $chars) . '...':  $_description;
+        return strlen($_description) > $chars ? substr($_description, 0, $chars) . '...' :  $_description;
     }
 
 
-    public function getCourseBadge(){
+    public function getCourseBadge()
+    {
 
-        
-       return $badge = "<span class='badge' style='background-color: grey'>{$this->course->name}</span>";
+
+        return $badge = "<span class='badge' style='background-color: grey'>{$this->course->name}</span>";
     }
-
-
 }
