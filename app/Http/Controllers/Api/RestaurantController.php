@@ -23,7 +23,7 @@ class RestaurantController extends Controller
         // $restaurants = Restaurant::select('restaurants.id','restaurant_name', 'description', 'image', 'address')->with('types:id,name')->get();
         // / ELIMINARE DOPO TEST ***************/
         
-        
+        $params = $request->input("Id");
 
         $restaurants = Restaurant::select('restaurants.id','restaurant_name', 'description', 'image', 'address')->whereHas('types', function ($query) use ($params) {
             $query->whereIn('types.id', $params);
