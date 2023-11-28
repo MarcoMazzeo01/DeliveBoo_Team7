@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Dish;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class DishController extends Controller
 {
@@ -14,7 +16,6 @@ class DishController extends Controller
      */
     public function index()
     {
-        //
     }
 
     /**
@@ -25,7 +26,6 @@ class DishController extends Controller
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**
@@ -36,7 +36,16 @@ class DishController extends Controller
      */
     public function show($id)
     {
-        //
+
+        $dishes = Dish::select('id', 'name', 'description', 'image', 'price', 'visible', 'course_id', 'restaurant_id')
+            //->with('course:id,name', 'restaurant:id')
+            ->find($id);
+
+        if ($dishes) {
+            $dishes->image = Storage::url($dishes->image);
+        }
+
+        return response()->json($dishes);
     }
 
     /**
