@@ -21,6 +21,8 @@ class RestaurantController extends Controller
 
         $restaurants = Restaurant::select('restaurants.id','restaurant_name', 'description', 'image', 'address')->with('types:id,name')->get();
         
+    
+
         foreach ($restaurants as $restaurant){
             $restaurant->image = Storage::url($restaurant->image);
             
