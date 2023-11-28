@@ -27,6 +27,6 @@ class RestaurantSeeder extends Seeder
         //     $restaurant->user_id = 1;
         //     $restaurant->save();
         // }
-        $restaurant = Restaurant::factory(5)->create();
+        $restaurant = Restaurant::factory(1)->create();
     }
 }
