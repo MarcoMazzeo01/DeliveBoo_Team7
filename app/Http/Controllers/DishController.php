@@ -95,7 +95,7 @@ class DishController extends Controller
         
        if(Auth::user()->id !== $dish->restaurant_id){
         
-        return abort(404);
+        return abort(403);
        }
 
         $dishDetail = $dish;
@@ -112,12 +112,12 @@ class DishController extends Controller
     public function edit(Dish $dish)
     {
 
-        if(Auth::user()->id !== $dish->restaurant_id ){
+
+        if((Auth::user()->id !== $dish->restaurant_id) ){
             
-            return abort(404);
+            return abort(403);
            }
 
-        // if($dish->restaurant_id != $dish->id) abort(404);
            
         $dishDetail = $dish;
         $placeholder = 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/310px-Placeholder_view_vector.svg.png';
