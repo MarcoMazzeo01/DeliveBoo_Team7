@@ -25,13 +25,13 @@ class TypeController extends Controller
 
 
     public function show($params){
-        // $prova = [];
+    //     $prova = [];
         
-        // foreach ($params as $param) {
-        //     dump($params);
-        //      $prova[] = $param;
+    //     foreach ($params as $param) {
+    //         dump($params);
+    //          $prova[] = $param;
              
-        // }
+    //     }
         
     
     // $restaurants = Restaurant::select('restaurants.id','restaurant_name', 'description', 'image', 'address')->whereHas('types', function ($query) use ($params) {
