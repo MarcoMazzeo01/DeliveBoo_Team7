@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\RestaurantController;
-use App\Http\Controllers\Api\DishController;
+use App\Http\Controllers\Api\TypeController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -21,6 +21,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::apiResource("restaurant", RestaurantController::class)->only(["index","show"]);
-
+Route::apiResource("type", TypeController::class)->only(["index", "show"]);
 
    
