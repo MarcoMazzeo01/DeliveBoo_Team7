@@ -112,11 +112,12 @@ class DishController extends Controller
     public function edit(Dish $dish)
     {
 
-
         if((Auth::user()->id !== $dish->restaurant_id) ){
             
             return abort(403);
            }
+
+           
 
            
         $dishDetail = $dish;
