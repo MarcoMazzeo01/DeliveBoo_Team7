@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 
 use App\Models\Restaurant;
-use App\Models\Dish;
+use Illuminate\Http\Request;
 
 
 
@@ -17,36 +17,36 @@ class RestaurantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(){
-
-        $restaurants = Restaurant::select('restaurants.id','restaurant_name', 'description', 'image', 'address')->with('types:id,name')->get();
+    public function index(Request $request){
         
-    
+        // / ELIMINARE DOPO TEST ***************/
+        // $restaurants = Restaurant::select('restaurants.id','restaurant_name', 'description', 'image', 'address')->with('types:id,name')->get();
+        // / ELIMINARE DOPO TEST ***************/
+        
+        
 
+        $restaurants = Restaurant::select('restaurants.id','restaurant_name', 'description', 'image', 'address')->whereHas('types', function ($query) use ($params) {
+            $query->whereIn('types.id', $params);
+        })->with('types:id,name')->get();
+    
         foreach ($restaurants as $restaurant){
             $restaurant->image = Storage::url($restaurant->image);
             
         }
-        
+       
         return response()->json($restaurants);
     }
 
+
+
     public function show(){
-
+        
     
-
+   
+       return response()->json();
        
     }
 
     
 }
     
-
-
-// $dishes = Dish::select('dishes.id', 'dishes.name', 'description', 'price', 'image', 'course_id')->with('course:id,name,color')->where('restaurant_id', $id)->where('visible', 1)->get();
-        
-// foreach($dishes as $dish){
-//     $dish->description =  $dish->getAbsDescription();
-//     dump($dish->image);
-//     $dish->image = Storage::url($dish->image);
-// return response()->json($dishes);
