@@ -88,13 +88,29 @@ main {
 .custom_button {
     background-color: #f36d00;
     color: #fff;
-    border: none;
+    border: 1px solid #f36d00;
 }
 
 .custom_button:hover {
     background-color: #fff;
     color: #f36d00;
     border: 1px solid black;
+}
+
+.animation-img {
+    position: absolute;
+    left: 0;
+    top: 300px;
+    animation: moveImage 6s linear infinite;
+}
+
+@keyframes moveImage {
+    0% {
+        left: -10%;
+    }
+    100% {
+        left: 75%;
+    }
 }
 
 // .dish-icons a {

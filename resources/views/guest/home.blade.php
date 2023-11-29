@@ -11,8 +11,8 @@
         <h1>Deliveboo, piattaforma leader nelle consegne a domicilio</h1>
         <h2>Non sei ancora nostro partner? Registrati ora</h2>
         <a class="btn fw-bold custom_button" href="{{ route('register') }}">{{ __('Inizia') }}</a>
-        <div>
-            <img class="w-50"
+        <div class="d-flex justify-content-start">
+            <img class="w-25  img-fluid animation-img"
                 src="https://static.vecteezy.com/system/resources/previews/017/111/929/original/express-delivery-social-media-post-scooter-delivery-online-delivery-service-or-bike-and-home-delivery-ads-or-icon-free-vector.jpg"
                 alt="">
         </div>

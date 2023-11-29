@@ -27,7 +27,7 @@
     <div id="app">
         @include('partials._navbar')
 
-        <main class="">
+        <main class="animation-container">
             <div class="container">
                 <div class="container mt-4">
                     @yield('content')
