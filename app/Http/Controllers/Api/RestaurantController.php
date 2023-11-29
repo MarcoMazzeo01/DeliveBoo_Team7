@@ -53,7 +53,6 @@ class RestaurantController extends Controller
             $dish->image = Storage::url($dish->image);
         } 
 
-       dd($dishes);
        return response()->json(['restaurant'=> $restaurant, 'dishes' => $dishes]);
     }  
 }
