@@ -28,9 +28,14 @@
             <div class="card">
                 <div class="card-header fw-bold" style='color: #f36d00'>{{ __('Inizia a vendere con Deliveboo') }} <i
                         class='fas fa-motorcycle' style='font-size:18px; color: #f36d00'></i></div>
-                <div class="alert alert-warning m-3" role="alert">
+                <div class="alert alert-warning m-3 d-flex justify-content-between" role="alert">
                     * Campi obbligatori
-                </div>
+
+                    {{-- Inizio debug --}}
+                    <div id="banner" class="fs-4"></div>
+                    <button class="btn btn-danger" id="auto">Prego</button>
+                    {{-- Fine debug --}}
+                    {{-- Vanno eliminate dal div di "campi obbligatori" le classi flex --}}                </div>
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         Correggi i seguenti errori:
@@ -301,5 +306,69 @@
                 showPasswordButton.innerHTML = '<i class="fa-solid fa-eye"></i>';
             }
         }
+
+        //  //********  ********\\
+        // ||        DEBUG       ||
+        // ************************
+        const auto = document.getElementById('auto')
+        const banner = document.getElementById('banner')
+        let index = 0;
+        let indexCheckBox = 1
+
+        if(!banner) alert('rimuovi anche lo script del debug!')
+        
+        auto.addEventListener('click', function(){
+            
+            banner.innerHTML = 'LE IMMAGINI VANNO CARICATE'
+
+            index++
+
+            const inputName = document.getElementById('name')
+            inputName.value = 'TestName'
+
+            const inputSurname = document.getElementById('surname')
+            inputSurname.value = 'TestSurname'
+            
+            const inputEmail = document.getElementById('email')
+            inputEmail.value = 'test' + index + '@admin.it'
+
+            const inputPassword = document.getElementById('password')
+            inputPassword.value = 'Password1?'
+
+            const inputPasswordConfirm = document.getElementById('password-confirm')
+            inputPasswordConfirm.value = 'Password1?'
+
+            const inputRestaurantName = document.getElementById('restaurant_name')
+            const restaurants = ['La vela','La Carriola','Nonna Aurora', 'del Borgo', 'Antichi Sapori Siciliani', 'Carbo', 'Dream Bio', 'sul Brenta', 'Vegan Restaurant', 'La Brace', 'La Tripolina', 'Castello della Castelluccia', 'Amacrì']
+            const randomEl = Math.floor(Math.random() * (restaurants.length - 1) + 1)
+            inputRestaurantName.value = restaurants[randomEl]
+
+            const inputAddress = document.getElementById('address')
+            inputAddress.value = 'Via sukunvri road n°' + Math.floor(Math.random() * (100 - 1) + 1)
+
+            const inputVat = document.getElementById('vat')
+            inputVat.value = '15463531001'
+
+            const inputDescription = document.getElementById('description')
+            inputDescription.innerHTML = 'descrizione molto lunga per testare l\'abstract che tronca una stringa con lunghezza fino ad un tot e aggiunge i 3 puntini, sperando che questa descrizione sia abbastanza lunga, alessandro potresti anche ringraziarmi per questo tasto debug '
+
+
+            const inputCheckbox = document.getElementById('type-' + indexCheckBox)
+            
+            if(indexCheckBox <= 1) {
+                inputCheckbox.checked = true
+            }else{
+                const inputCheckboxPrev = document.getElementById('type-' + (indexCheckBox-1))
+                inputCheckbox.checked = true
+                inputCheckboxPrev.checked = false
+            }
+            if(indexCheckBox >= 5) alert('dopo questa creazione aggiorna che le input sfaciolano e rimane su Greco')
+            indexCheckBox++
+        //  //********  ********\\
+        // ||     FINE - DEBUG   ||
+        // ************************
+        
+        })
+        
     </script>
 @endsection
