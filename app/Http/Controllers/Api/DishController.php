@@ -48,16 +48,17 @@ class DishController extends Controller
      * param  int  $id
      * return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($dishId)
     {
 
         $dishes = Dish::select('id', 'name', 'description', 'image', 'price', 'visible', 'course_id', 'restaurant_id')
-        ->with('course:id,name', 'restaurant:id')
+        ->where('id', $dishId)    
+        // ->with('course:id,name', 'restaurant:id')
         ->get();
 
-        if ($dishes) {
-            $dishes->image = Storage::url($dishes->image);
-        }
+        // if ($dishes) {
+        //     $dishes->image = Storage::url($dishes->image);
+        // }
 
         return response()->json($dishes);
     }
