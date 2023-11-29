@@ -19,8 +19,8 @@
 @endsection
 
 @section('content')
-    <div class="row justify-content-center flex-nowrap pb-5">
-        <div class="col-3 col-md-6 text-light overlay_register">
+    <div class="row justify-content-center pb-5">
+        <div class="col-8 col-md-8 text-light overlay_register">
             <h2 class="text-center">Unisciti al servizio di consegne a domicilio leader in Europa.</h2>
             <h3 class="text-center">Aumenta i tuoi clienti, le vendite e le tue potenzialità di marketing.</h3>
         </div>
@@ -35,7 +35,8 @@
                     <div id="banner" class="fs-4"></div>
                     <button class="btn btn-danger" id="auto">Prego</button>
                     {{-- Fine debug --}}
-                    {{-- Vanno eliminate dal div di "campi obbligatori" le classi flex --}}                </div>
+                    {{-- Vanno eliminate dal div di "campi obbligatori" le classi flex --}}
+                </div>
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         Correggi i seguenti errori:
@@ -130,7 +131,7 @@
                                         class="fa-solid fa-eye"></i></span>
 
                                 @error('password')
-                                    <span class="invalid-feedback" role="alert">
+                                    <span class="invalid-feedback ms-1" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
@@ -214,7 +215,7 @@
                                     class="form-control @error('vat') is-invalid @enderror" name="vat"
                                     value="{{ old('vat') }}" required autocomplete="vat" autofocus
                                     pattern="^[0-9]{11}$" title="Inserisci una Partita IVA valida di 11 numeri"
-                                    placeholder="Inserisci il numero di Partita Iva">
+                                    placeholder="Inserisci il numero di Partita Iva" maxlength="11">
 
                                 @error('vat')
                                     <span class="invalid-feedback" role="alert">
@@ -307,6 +308,18 @@
             }
         }
 
+        function validatePasswordMatch() {
+            let password = document.getElementById('password').value;
+            let confirmPassword = document.getElementById('password-confirm').value;
+            let passwordConfirmationError = document.getElementById('password-confirmation-error');
+
+            if (password !== confirmPassword) {
+                passwordConfirmationError.textContent = 'Le password non corrispondono';
+            } else {
+                passwordConfirmationError.textContent = '';
+            }
+        }
+
         //  //********  ********\\
         // ||        DEBUG       ||
         // ************************
@@ -315,10 +328,10 @@
         let index = 0;
         let indexCheckBox = 1
 
-        if(!banner) alert('rimuovi anche lo script del debug!')
-        
-        auto.addEventListener('click', function(){
-            
+        if (!banner) alert('rimuovi anche lo script del debug!')
+
+        auto.addEventListener('click', function() {
+
             banner.innerHTML = 'LE IMMAGINI VANNO CARICATE'
 
             index++
@@ -328,7 +341,7 @@
 
             const inputSurname = document.getElementById('surname')
             inputSurname.value = 'TestSurname'
-            
+
             const inputEmail = document.getElementById('email')
             inputEmail.value = 'test' + index + '@admin.it'
 
@@ -339,7 +352,10 @@
             inputPasswordConfirm.value = 'Password1?'
 
             const inputRestaurantName = document.getElementById('restaurant_name')
-            const restaurants = ['La vela','La Carriola','Nonna Aurora', 'del Borgo', 'Antichi Sapori Siciliani', 'Carbo', 'Dream Bio', 'sul Brenta', 'Vegan Restaurant', 'La Brace', 'La Tripolina', 'Castello della Castelluccia', 'Amacrì']
+            const restaurants = ['La vela', 'La Carriola', 'Nonna Aurora', 'del Borgo', 'Antichi Sapori Siciliani',
+                'Carbo', 'Dream Bio', 'sul Brenta', 'Vegan Restaurant', 'La Brace', 'La Tripolina',
+                'Castello della Castelluccia', 'Amacrì'
+            ]
             const randomEl = Math.floor(Math.random() * (restaurants.length - 1) + 1)
             inputRestaurantName.value = restaurants[randomEl]
 
@@ -350,25 +366,26 @@
             inputVat.value = '15463531001'
 
             const inputDescription = document.getElementById('description')
-            inputDescription.innerHTML = 'descrizione molto lunga per testare l\'abstract che tronca una stringa con lunghezza fino ad un tot e aggiunge i 3 puntini, sperando che questa descrizione sia abbastanza lunga, alessandro potresti anche ringraziarmi per questo tasto debug '
+            inputDescription.innerHTML =
+                'descrizione molto lunga per testare l\'abstract che tronca una stringa con lunghezza fino ad un tot e aggiunge i 3 puntini, sperando che questa descrizione sia abbastanza lunga, alessandro potresti anche ringraziarmi per questo tasto debug '
 
 
             const inputCheckbox = document.getElementById('type-' + indexCheckBox)
-            
-            if(indexCheckBox <= 1) {
+
+            if (indexCheckBox <= 1) {
                 inputCheckbox.checked = true
-            }else{
-                const inputCheckboxPrev = document.getElementById('type-' + (indexCheckBox-1))
+            } else {
+                const inputCheckboxPrev = document.getElementById('type-' + (indexCheckBox - 1))
                 inputCheckbox.checked = true
                 inputCheckboxPrev.checked = false
             }
-            if(indexCheckBox >= 5) alert('dopo questa creazione aggiorna che le input sfaciolano e rimane su Greco')
+            if (indexCheckBox >= 5) alert(
+                'dopo questa creazione aggiorna che le input sfaciolano e rimane su Greco')
             indexCheckBox++
-        //  //********  ********\\
-        // ||     FINE - DEBUG   ||
-        // ************************
-        
+            //  //********  ********\\
+            // ||     FINE - DEBUG   ||
+            // ************************
+
         })
-        
     </script>
 @endsection
