@@ -106,7 +106,8 @@ main {
 .animation-img {
     position: absolute;
     left: 0;
-    top: 300px;
+    top: 420px;
+    max-width: 350px;
     animation: moveImage 6s linear infinite;
 }
 
@@ -115,7 +116,7 @@ main {
         left: -10%;
     }
     100% {
-        left: 75%;
+        left: 78%;
     }
 }
 
