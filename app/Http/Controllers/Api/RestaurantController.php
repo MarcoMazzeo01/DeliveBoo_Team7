@@ -18,25 +18,57 @@ class RestaurantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     // function per la generazione di path assoluti delle immagini
+   
     public function index(Request $request){
         
-        if($request->input('id')){
+        function imagePath($restaurants){
+            foreach ($restaurants as $restaurant){ 
+                
+                $restaurant->image = Storage::url($restaurant->image);
+            }  
+        }
         
-        $params = $request->input("id");
 
-        $restaurants = Restaurant::select('restaurants.id','restaurant_name', 'description', 'image', 'address')->whereHas('types', function ($query) use ($params) {
-            $query->whereIn('types.id', $params);
-        })->with('types:id,name')->get();
+        $params = $request->input("filter"); // salvo i parametr in params
 
-        }else{
+
+        if(!empty($params)){ //verifico se sono stati passati parametri
+            
+           
+            if(is_array($params)){ //se è un array restituisco secondo le checkbox checked
+
+                $restaurants = Restaurant::select('restaurants.id','restaurant_name', 'description', 'image', 'address')->whereHas('types', function ($query) use ($params) {
+                    $query->whereIn('types.id', $params);
+                })->with('types:id,name')->get();
+
+                imagePath($restaurants);
+            }
+            else{ // altrimenti è una stringa
+
+               
+                $restaurants = Restaurant::select('restaurants.id','restaurant_name', 'description', 'image', 'address')->whereRaw('LOWER(REPLACE(restaurant_name, " ", "")) LIKE ?', ['%'. $params .'%'])->with('types:id,name')->get();
+
+                imagePath($restaurants);
+                
+
+                
+            }
+            
+        }
+            
+
+        else{ // se assenza params restituisco tutti i ristoranti 
+            
 
             $restaurants = Restaurant::select('restaurants.id','restaurant_name', 'description', 'image', 'address')->with('types:id,name')->get();
-        }
-
-        foreach ($restaurants as $restaurant){
             
-            $restaurant->image = Storage::url($restaurant->image);
-        }   
+
+
+            imagePath($restaurants);
+        }
+  
        
         return response()->json($restaurants);
     }
@@ -55,5 +87,5 @@ class RestaurantController extends Controller
 
        return response()->json(['restaurant'=> $restaurant, 'dishes' => $dishes]);
     }  
+    
 }
- 
