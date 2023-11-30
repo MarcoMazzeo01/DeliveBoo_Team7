@@ -53,7 +53,6 @@
                     <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data"
                         onsubmit="return validateForm()" class="d-flex justify-content-center flex-wrap">
                         @csrf
-
                         <section class="col-md-6">
                             <div>
                                 <h4>Informazioni Personali:</h4>
@@ -153,7 +152,7 @@
                                         title="La password deve contenere almeno 8 caratteri, una lettera maiuscola, un numero e un carattere speciale"
                                         placeholder="Conferma password"
                                         style="
-                                        min-width: 228px;">
+                                            min-width: 228px;">
                                     <span id="show-password-confirmation"
                                         onclick="togglePassword('password-confirm', 'show-password-confirmation')"><i
                                             class="fa-solid fa-eye"></i></span>
@@ -245,13 +244,16 @@
                                 </div>
                             </div>
                         </section>
-                        <section class="col-md-6">
+                        <section>
                             <!-- Add validation for types field -->
-                            <div class="col-12 mb-5">
-                                <div class="d-flex row form-check @error('types') is-invalid @enderror">
+                            <div class="col-md-7 mb-4" style="
+                            margin-left: 350px">
+                                <div
+                                    class="d-flex
+                                row form-check @error('types') is-invalid @enderror">
                                     <h5>Tipo di Cucina *</h5>
                                     @foreach ($types as $type)
-                                        <div class="col-4">
+                                        <div class="col-md-5">
                                             <input type="checkbox" name="types[]" id="type-{{ $type->id }}"
                                                 value="{{ $type->id }}" class="form-check-control my-2"
                                                 @if (in_array($type->id, old('types', []))) checked @endif>
@@ -265,12 +267,13 @@
                                     </div>
                                 @enderror
                             </div>
-
-                            <!-- Add validation for image field -->
-                            <div class="mb-4 row">
-                                <label for="image" class="form-label col-md-4">Carica una immagine</label>
-
-                                <div class="col-md-8">
+                            <div class="d-flex justify-content-start">
+                                <div class="col-md-4 me-4">
+                                    <img src="" alt="" id="image_preview" class="img-fluid">
+                                </div>
+                                <!-- Add validation for image field -->
+                                <div class="col-md-6">
+                                    <label for="image" class="form-label">Carica una immagine</label>
                                     <input type="file" class="form-control @error('image') is-invalid @enderror"
                                         id="image" name="image" value="{{ old('image') }}"autocomplete="image"
                                         autofocus>
@@ -283,16 +286,14 @@
                                     @enderror
                                 </div>
                             </div>
-
-                            <div class="mb-4 row mb-0">
-                                <div class="col-md-6 offset-md-4">
-                                    <button id="submitButton" type="submit" class="btn btn-primary custom_button"
-                                        disabled>
-                                        {{ __('Registrati') }} <i class="fa-solid fa-paper-plane"></i>
-                                    </button>
-                                </div>
-                            </div>
                         </section>
+                        <div class="my-4 row mb-0 col-md-8">
+                            <div class="col-md-6 offset-md-4">
+                                <button id="submitButton" type="submit" class="btn btn-primary custom_button" disabled>
+                                    {{ __('Registrati') }} <i class="fa-solid fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -302,6 +303,14 @@
 
 @section('script')
     <script type="text/javascript">
+        const imagePreview = document.getElementById('image_preview');
+        const image = document.getElementById('image');
+        console.log(imagePreview);
+        image.addEventListener('change', function() {
+            const [file] = this.files;
+            imagePreview.src = URL.createObjectURL(file);
+        })
+
         function togglePassword(inputId, buttonId) {
             let passwordInput = document.getElementById(inputId);
             let showPasswordButton = document.getElementById(buttonId);
