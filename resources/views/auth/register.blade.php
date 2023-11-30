@@ -50,7 +50,8 @@
                 @endif
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data"
+                        onsubmit="return validateForm()">
                         @csrf
 
                         <div>
@@ -153,11 +154,10 @@
                                 <span id="show-password-confirmation"
                                     onclick="togglePassword('password-confirm', 'show-password-confirmation')"><i
                                         class="fa-solid fa-eye"></i></span>
-                                @error('password_confirmation')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <span id="password-match-error" class="invalid-feedback ms-1" role="alert"
+                                    style="display: none;">
+                                    <strong>Le password non corrispondono.</strong>
+                                </span>
                             </div>
                         </div>
 
@@ -281,7 +281,7 @@
 
                         <div class="mb-4 row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary custom_button">
+                                <button id="submitButton" type="submit" class="btn btn-primary custom_button" disabled>
                                     {{ __('Registrati') }} <i class="fa-solid fa-paper-plane"></i>
                                 </button>
                             </div>
@@ -308,17 +308,37 @@
             }
         }
 
-        function validatePasswordMatch() {
+        function validateForm() {
             let password = document.getElementById('password').value;
             let confirmPassword = document.getElementById('password-confirm').value;
-            let passwordConfirmationError = document.getElementById('password-confirmation-error');
+            let errorSpan = document.getElementById('password-match-error');
 
             if (password !== confirmPassword) {
-                passwordConfirmationError.textContent = 'Le password non corrispondono';
+                errorSpan.style.display = 'block';
+                return false;
             } else {
-                passwordConfirmationError.textContent = '';
+                errorSpan.style.display = 'none';
+                return true;
             }
         }
+
+        function checkPasswordMatch() {
+            let password = document.getElementById('password').value;
+            let confirmPassword = document.getElementById('password-confirm').value;
+            let errorSpan = document.getElementById('password-match-error');
+            let submitButton = document.getElementById('submitButton');
+
+            if (password !== confirmPassword) {
+                errorSpan.style.display = 'block';
+                submitButton.disabled = true;
+            } else {
+                errorSpan.style.display = 'none';
+                submitButton.disabled = false;
+            }
+        }
+
+        document.getElementById('password').addEventListener('input', checkPasswordMatch);
+        document.getElementById('password-confirm').addEventListener('input', checkPasswordMatch);
 
         //  //********  ********\\
         // ||        DEBUG       ||
