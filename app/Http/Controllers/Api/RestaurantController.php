@@ -33,7 +33,7 @@ class RestaurantController extends Controller
         }
 
 
-        $params = $request->input("filter"); // salvo i parametr in params
+        $params = $request->input("params"); // salvo i parametr in params
 
 
         if (!empty($params)) { //verifico se sono stati passati parametri
