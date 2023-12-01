@@ -53,17 +53,12 @@ class RestaurantController extends Controller
 
                 imagePath($restaurants);
             }
-        } else { // se assenza params restituisco tutti i ristoranti 
+        } else { // se assenza params restituisco 3 restaurants random            
 
-
-            $restaurants = Restaurant::select('restaurants.id', 'restaurant_name', 'description', 'image', 'address')->with('types:id,name')->get();
-
-
-
+            $restaurants = Restaurant::select('restaurants.id', 'restaurant_name', 'description', 'image', 'address')->with('types:id,name')->inRandomOrder()->limit(3)->get();
+           
             imagePath($restaurants);
         }
-
-
         return response()->json($restaurants);
     }
 
