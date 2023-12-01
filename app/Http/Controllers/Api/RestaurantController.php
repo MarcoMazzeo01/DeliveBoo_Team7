@@ -43,7 +43,7 @@ class RestaurantController extends Controller
 
                 $restaurants = Restaurant::select('restaurants.id', 'restaurant_name', 'description', 'image', 'address')->whereHas('types', function ($query) use ($params) {
                     $query->whereIn('types.id', $params);
-                })->with('types:id,name')->get();
+                },  '=', count($params))->with('types:id,name')->get();
 
                 imagePath($restaurants);
             } else { // altrimenti è una stringa
