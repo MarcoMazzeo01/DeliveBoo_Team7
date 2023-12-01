@@ -95,7 +95,7 @@ class DishController extends Controller
         
        if(Auth::user()->id !== $dish->restaurant_id){
         
-        return abort(403);
+        return abort(404);
        }
 
         $dishDetail = $dish;
@@ -114,7 +114,7 @@ class DishController extends Controller
 
         if((Auth::user()->id !== $dish->restaurant_id) ){
             
-            return abort(403);
+            return abort(404);
            }
 
            
