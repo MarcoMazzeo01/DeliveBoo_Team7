@@ -6,6 +6,10 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\RestaurantController;
 use App\Http\Controllers\Api\TypeController;
+use App\Http\Controllers\Api\Orders\OrderController;
+
+
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -23,3 +27,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::apiResource("restaurant", RestaurantController::class)->only(["index", "show"]);
 Route::apiResource("type", TypeController::class)->only("index");
+Route::get('order/generate', [OrderController::class, 'generate']);
+Route::post('order/make/payment', [OrderController::class, 'makePayment']);
