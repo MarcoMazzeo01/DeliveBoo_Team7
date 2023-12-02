@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Orders\OrderRequest;
 use Braintree\Gateway;
 use Illuminate\Http\Request;
+use App\Models\Dish;
 
 class OrderController extends Controller
 {
@@ -21,8 +22,13 @@ class OrderController extends Controller
 
     public function makePayment(OrderRequest $request, Gateway $gateway)
     {
+        $dish_id = $request->id;
+        $data = Dish::select('price')->where('id', $dish_id)->first();
+
+
+
         $result = $gateway->transaction()->sale([
-            'amount' => $request->amount,
+            'amount' => $data->price,
             'paymentMethodNonce' => $request->token,
             'options' => [
                 'submitForSettlement' => true
