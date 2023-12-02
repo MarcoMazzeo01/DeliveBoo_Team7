@@ -22,7 +22,7 @@ class OrderController extends Controller
     public function makePayment(OrderRequest $request, Gateway $gateway)
     {
         $result = $gateway->transaction()->sale([
-            'amount' => '10.00',
+            'amount' => $request->amount,
             'paymentMethodNonce' => $request->token,
             'options' => [
                 'submitForSettlement' => true
@@ -31,7 +31,7 @@ class OrderController extends Controller
         if ($result->success) {
             $data = [
                 'succes' => true,
-                'message' => "Transazione esesguita"
+                'message' => "Transazione eseguita"
             ];
             return response()->json($data, 200);
         } else {
