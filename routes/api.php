@@ -27,5 +27,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::apiResource("restaurant", RestaurantController::class)->only(["index", "show"]);
 Route::apiResource("type", TypeController::class)->only("index");
+
+// Api ordini
+Route::post('order/', [OrderController::class, 'orderDataForm']);
+Route::post('order/send', [OrderController::class, 'saverDataForm']);
 Route::get('order/generate', [OrderController::class, 'generate']);
 Route::post('order/make/payment', [OrderController::class, 'makePayment']);
