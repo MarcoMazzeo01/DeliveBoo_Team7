@@ -30,7 +30,7 @@ class OrderController extends Controller
 
         $result = $gateway->transaction()->sale([
             'amount' => $price,
-            'paymentMethodNonce' =>  $nonceFromTheClient,
+            'paymentMethodNonce' =>  'fake-valid-no-billing-address-nonce',
             'options' => [
                 'submitForSettlement' => true
             ]
