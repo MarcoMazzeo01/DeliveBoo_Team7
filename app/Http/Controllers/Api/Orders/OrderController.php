@@ -20,16 +20,17 @@ class OrderController extends Controller
         return response()->json($data, 200);
     }
 
-    public function makePayment(OrderRequest $request, Gateway $gateway)
+    public function makePayment(Request $request, Gateway $gateway)
     {
-        $dish_id = $request->id;
-        $data = Dish::select('price')->where('id', $dish_id)->first();
 
-
+        
+        $price = Dish::where('id', $request['id'])->value('price');
+        
+        $nonceFromTheClient = $request['payment_method_nonce'];
 
         $result = $gateway->transaction()->sale([
-            'amount' => $data->price,
-            'paymentMethodNonce' => $request->token,
+            'amount' => $price,
+            'paymentMethodNonce' =>  $nonceFromTheClient,
             'options' => [
                 'submitForSettlement' => true
             ]
@@ -48,5 +49,6 @@ class OrderController extends Controller
             return response()->json($data, 401);
         }
     }
+    
 
 }
