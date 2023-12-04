@@ -23,9 +23,11 @@ class OrderRequest extends FormRequest
      */
     public function rules()
     {
+
         return [
-            'id' => 'required',
-            'token' => 'required',
+            'id' => 'required|numeric',
+            'payment_method_nonce' => 'required|string'
+            
         ];
     }
 }

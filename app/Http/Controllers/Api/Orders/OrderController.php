@@ -12,6 +12,9 @@ class OrderController extends Controller
 {
     public function generate(Request $request, Gateway $gateway)
     {
+
+
+
         $token = $gateway->clientToken()->generate();
         $data = [
             'succes' => true,
@@ -20,21 +23,25 @@ class OrderController extends Controller
         return response()->json($data, 200);
     }
 
-    public function makePayment(Request $request, Gateway $gateway)
+    public function makePayment(OrderRequest $request, Gateway $gateway)
     {
 
+        $_request = $request->validated();
         
-        $price = Dish::where('id', $request['id'])->value('price');
+        $price = Dish::where('id', $_request['id'])->value('price');
         
-        $nonceFromTheClient = $request['payment_method_nonce'];
+        $nonceFromTheClient = $_request['payment_method_nonce'];
 
-        $result = $gateway->transaction()->sale([
-            'amount' => $price,
-            'paymentMethodNonce' =>  'fake-valid-no-billing-address-nonce',
-            'options' => [
-                'submitForSettlement' => true
-            ]
-        ]);
+
+            $result = $gateway->transaction()->sale([
+                'amount' => $price,
+                'paymentMethodNonce' => $nonceFromTheClient,
+                'options' => [
+                    'submitForSettlement' => true
+                ]
+            ]);
+
+
         if ($result->success) {
             $data = [
                 'succes' => true,
@@ -50,5 +57,4 @@ class OrderController extends Controller
         }
     }
     
-
 }
