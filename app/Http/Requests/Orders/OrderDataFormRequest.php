@@ -24,11 +24,11 @@ class OrderDataFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|max:50',
-            'lastName' => 'required|string|max:50',
-            'tel' => 'required|max:15|min:9',
-            'address' => 'required|string|max:40',
-            'note' => 'nullable|string|max:100',
+            'form.name' => 'required|string|max:50',
+            'form.lastName' => 'required|string|max:50',
+            'form.tel' => 'required|max:15|min:9',
+            'form.address' => 'required|string|max:40',
+            'form.note' => 'nullable|string|max:100',
 
         ];
     }

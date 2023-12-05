@@ -8,6 +8,7 @@ use App\Http\Requests\Orders\OrderDataFormRequest;
 use Braintree\Gateway;
 use Illuminate\Http\Request;
 use App\Models\Dish;
+use App\Models\Order;
 
 class OrderController extends Controller
 {
@@ -15,22 +16,72 @@ class OrderController extends Controller
 
     public function orderDataForm(OrderDataFormRequest $request){
         
-       
-        
         $data = $request->validated();
         
         
+        $dataOrder = $request['order'];
+        $dishes = $dataOrder['dishes'];
+        $restaurantId = $dataOrder['restaurant_id'];
+
+        $dishIds = [];
+
+        foreach($dishes as $dishId){
+           $dishIds[] = $dishId['id'];
+        }
+
+
+        $dishesValidation = Dish::select('restaurant_id')->whereIn('id', $dishIds)->get();
+
+        foreach($dishesValidation as $dishValidation){
+            if($dishValidation->restaurant_id !== $restaurantId) return abort(404);
+        }
+
+        $dataValid = [
+            "form" => $request['form'],
+            'order' => $request['order']    
+        ];
         
-        return response()->json($data);
+        
+        
+
+        
+        return response()->json($dataValid);
     }
 
 
 
     public function saverDataForm(Request $request){
 
-        $data = $request;
+        $data = $request['form'];
+        $dataOrder =$request['orderCar'];
+        $restaurantId = $dataOrder['restaurant_id'];
 
-        return response()->json($data);
+
+
+        // foreach($data['ord'])
+        
+        // $dishIds =[2,3,4,5];
+
+        // $dishes = Dish::select('id')->whereIn('id', $dishIds)->pluck('id')->toArray();
+        
+        // $totalOrder = Dish::whereIn('id', $dishIds)->sum('price')   ;
+
+
+        // $order = new Order;
+
+        // $order->customer_name = $request['name'];
+        // $order->customer_surname = $request['lastName'];
+        // $order->customer_phone = $request['tel'];
+        // $order->address = $request['address'];
+        // $order->notes = $request['note'];
+        // $order->total = $totalOrder;
+        
+
+        // $order->save();
+        
+        // $order->dishes()->attach($dishes);
+
+        return response()->json($restaurantId);
         
     }
 
