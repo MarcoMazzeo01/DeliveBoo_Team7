@@ -51,37 +51,46 @@ class OrderController extends Controller
 
 
     public function saverDataForm(Request $request){
-
-        $data = $request['form'];
-        $dataOrder =$request['orderCar'];
-        $restaurantId = $dataOrder['restaurant_id'];
-
-
-
-        // foreach($data['ord'])
         
-        // $dishIds =[2,3,4,5];
+        $formData = $request['form'];
+        $dataOrder = $request['order'];
+        $dishes = $dataOrder['dishes'];
 
-        // $dishes = Dish::select('id')->whereIn('id', $dishIds)->pluck('id')->toArray();
+
+        $dishIds = [];
+        $total = 0;
         
-        // $totalOrder = Dish::whereIn('id', $dishIds)->sum('price')   ;
+        foreach($dishes as $dish){
+            $dishIds[] = $dish['id'];  
+        };
+    
 
+        $dishesForPriceCalc = Dish::whereIn('id', $dishIds)->get();
 
-        // $order = new Order;
+        foreach($dishes as $dish){
 
-        // $order->customer_name = $request['name'];
-        // $order->customer_surname = $request['lastName'];
-        // $order->customer_phone = $request['tel'];
-        // $order->address = $request['address'];
-        // $order->notes = $request['note'];
-        // $order->total = $totalOrder;
+            $dishForPriceCalc = $dishesForPriceCalc->where('id', $dish['id'])->first();
+
+            if($dishForPriceCalc) $total += ($dish['quantity'] * $dishForPriceCalc->price);
+        }
+
+        
+        $order = new Order;
+
+        $order->customer_name = $formData['name'];
+        $order->customer_surname = $formData['lastName'];
+        $order->customer_phone = $formData['tel'];
+        $order->address = $formData['address'];
+        $order->notes = $formData['note'];
+        $order->total = $total;
         
 
-        // $order->save();
-        
-        // $order->dishes()->attach($dishes);
+        $order->save();
 
-        return response()->json($restaurantId);
+        foreach($dishes as $dish){
+             
+            $order->dishes()->attach($dish['id'], ['quantity'=>$dish['quantity']]);
+        }
         
     }
 
