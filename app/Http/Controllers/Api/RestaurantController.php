@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Restaurant;
 use App\Models\Dish;
+use App\Models\Course;
 
 
 class RestaurantController extends Controller
@@ -73,6 +74,8 @@ class RestaurantController extends Controller
         
         $restaurant = Restaurant::select('restaurants.id', 'restaurant_name', 'description', 'image', 'address')->where('id', $id)->with('types:id,name')->first();
         $dishes = Dish::select('id', 'name', 'image', 'description', 'price', 'course_id', 'restaurant_id')->where('restaurant_id', $id)->where('visible', '=', '1')->with('course:id,name,color')->get();
+        $courses = Course::select('name','id')->get();
+
         
         
         $placeholder = 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/310px-Placeholder_view_vector.svg.png';
@@ -94,6 +97,6 @@ class RestaurantController extends Controller
             }
         }
 
-        return response()->json(['restaurant' => $restaurant, 'dishes' => $dishes]);
+        return response()->json(['restaurant' => $restaurant, 'dishes' => $dishes, 'courses'=> $courses]);
     }
 }
