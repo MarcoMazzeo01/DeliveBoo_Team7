@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Restaurant;
 use App\Models\Dish;
+use App\Models\Course;
 
 
 class RestaurantController extends Controller
@@ -28,7 +29,13 @@ class RestaurantController extends Controller
         {
             foreach ($restaurants as $restaurant) {
 
-                $restaurant->image = Storage::url($restaurant->image);
+                $placeholder = 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/310px-Placeholder_view_vector.svg.png';
+                if($restaurant->image ) {
+                    $restaurant->image = Storage::url($restaurant->image);
+                   } else {
+                    $restaurant->image = $placeholder;
+                   }
+
             }
         }
 
@@ -53,9 +60,9 @@ class RestaurantController extends Controller
 
                 imagePath($restaurants);
             }
-        } else { // se assenza params restituisco 3 restaurants random            
+        } else { // se assenza params restituisco i ristoranti in ordine di creazione          
 
-            $restaurants = Restaurant::select('restaurants.id', 'restaurant_name', 'description', 'image', 'address')->with('types:id,name')->inRandomOrder()->limit(3)->get();
+            $restaurants = Restaurant::select('restaurants.id', 'restaurant_name', 'description', 'image', 'address')->with('types:id,name')->orderBy('created_at', 'desc')->limit(3)->get();
            
             imagePath($restaurants);
         }
@@ -64,17 +71,32 @@ class RestaurantController extends Controller
 
     public function show($id)
     {
-
+        
         $restaurant = Restaurant::select('restaurants.id', 'restaurant_name', 'description', 'image', 'address')->where('id', $id)->with('types:id,name')->first();
         $dishes = Dish::select('id', 'name', 'image', 'description', 'price', 'course_id', 'restaurant_id')->where('restaurant_id', $id)->where('visible', '=', '1')->with('course:id,name,color')->get();
+        $courses = Course::select('name','id')->get();
 
+        
+        
+        $placeholder = 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/310px-Placeholder_view_vector.svg.png';
 
-        $restaurant->image = Storage::url($restaurant->image);
-
-        foreach ($dishes as $dish) {
-            $dish->image = Storage::url($dish->image);
+        if($restaurant->image ) {
+         $restaurant->image = Storage::url($restaurant->image);
+        } else {
+         $restaurant->image = $placeholder;
         }
 
-        return response()->json(['restaurant' => $restaurant, 'dishes' => $dishes]);
+
+        foreach ($dishes as $dish) {
+            $placeholder = 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/310px-Placeholder_view_vector.svg.png';
+
+            if($dish->image ) {
+             $dish->image = Storage::url($dish->image);
+            } else {
+             $dish->image = $placeholder;
+            }
+        }
+
+        return response()->json(['restaurant' => $restaurant, 'dishes' => $dishes, 'courses'=> $courses]);
     }
 }
