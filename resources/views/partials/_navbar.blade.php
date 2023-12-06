@@ -11,7 +11,9 @@
                     <li class="nav-item">
                         <a class="nav-link text-light fw-bold {{ Route::currentRouteName() == 'guest.home' ? 'active' : '' }}"
                             href="{{ route('guest.home') }}" aria-current="page"> 
-                            <img src="{{ asset('images/color-no-bg.png') }}" >
+                            <div class="app-logo">
+                                <img src="{{ asset('images/color-no-bg.png') }}" >
+                            </div> 
                             {{-- Deliveboo <i class='fas fa-motorcycle'
                                 style='font-size:18px; color:white'></i> --}}
                                 {{-- <span class="visually-hidden">(current) --}}
@@ -33,7 +35,9 @@
                         <div>
                             <a class="nav-link text-light fw-bold {{ Route::currentRouteName() == 'admin.restaurant' ? 'active' : '' }}"
                                 href="{{ route('admin.restaurant') }}" aria-current="page">
-                                <img src="{{ asset('images/color-no-bg.png') }}" >
+                                <div class="app-logo">
+                                    <img src="{{ asset('images/color-no-bg.png') }}" >
+                                </div>
                                 {{-- Deliveboo Admin <i class='fas fa-motorcycle' style='font-size:18px; color:white'></i> --}}
                                 {{-- <span class="visually-hidden">(current)</span> --}}
                             </a>

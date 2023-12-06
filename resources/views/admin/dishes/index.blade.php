@@ -8,7 +8,7 @@
 
 @section('content')
     <div class="d-flex justify-content-between mb-3">
-        <h1 class="menu-title" style="color:#f36d00">MENÙ</h1>
+        <h1 class="menu-title" style="color: #3a970f">MENÙ</h1>
 
         <div>
             <a class="btn me-2 mb-3 custom_button" href="{{ route('admin.dish.create') }}">Crea un
