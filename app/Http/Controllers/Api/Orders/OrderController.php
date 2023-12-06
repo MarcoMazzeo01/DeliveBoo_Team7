@@ -82,7 +82,7 @@ class OrderController extends Controller
         $order->customer_phone = $formData['tel'];
         $order->address = $formData['address'];
         $order->notes = $formData['note'];
-        $order->customer_email = $formData['email'];
+        // $order->customer_email = $formData['email'];
         $order->total = $total;
         
 
