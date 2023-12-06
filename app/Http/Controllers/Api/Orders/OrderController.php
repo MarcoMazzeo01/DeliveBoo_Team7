@@ -15,7 +15,7 @@ class OrderController extends Controller {
 
     public function orderDataForm(OrderDataFormRequest $request) {
 
-        $data = $request->validated();
+        $request->validated();
 
 
         $dataOrder = $request['order'];
@@ -25,6 +25,8 @@ class OrderController extends Controller {
         $dishIds = [];
 
         foreach($dishes as $dishId) {
+            if($restaurantId !== $dataOrder['restaurant_id'])
+                return abort(404);
             $dishIds[] = $dishId['id'];
         }
 
@@ -66,6 +68,7 @@ class OrderController extends Controller {
         ;
 
 
+
         $dishesForPriceCalc = Dish::whereIn('id', $dishIds)->get();
 
         foreach($dishes as $dish) {
@@ -94,7 +97,7 @@ class OrderController extends Controller {
 
             $order->dishes()->attach($dish['id'], ['quantity' => $dish['quantity']]);
         }
-
+        return response()->json($dishes);
     }
 
 
