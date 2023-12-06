@@ -50,7 +50,7 @@ class OrderController extends Controller
 
 
 
-    public function saverDataForm(Request $request){
+    public function saveDataForm(Request $request){
         
         $formData = $request['form'];
         $dataOrder = $request['order'];
@@ -82,6 +82,7 @@ class OrderController extends Controller
         $order->customer_phone = $formData['tel'];
         $order->address = $formData['address'];
         $order->notes = $formData['note'];
+        $order->customer_email = $formData['email'];
         $order->total = $total;
         
 

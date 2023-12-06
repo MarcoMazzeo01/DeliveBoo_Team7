@@ -30,6 +30,6 @@ Route::apiResource("type", TypeController::class)->only("index");
 
 // Api ordini
 Route::post('order/', [OrderController::class, 'orderDataForm']);
-Route::post('order/send', [OrderController::class, 'saverDataForm']);
+Route::post('order/send', [OrderController::class, 'saveDataForm']);
 Route::get('order/generate', [OrderController::class, 'generate']);
 Route::post('order/make/payment', [OrderController::class, 'makePayment']);
