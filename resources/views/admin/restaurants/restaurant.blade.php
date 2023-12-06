@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-    <h2 style="color: #f36d00"> Dettagli ristorante </h2>
+    <h2 style="color:  #3a970f"> Dettagli ristorante </h2>
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card">
