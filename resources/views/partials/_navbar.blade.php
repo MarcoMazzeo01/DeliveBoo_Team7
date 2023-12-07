@@ -2,8 +2,10 @@
     <div class="container">
 
         <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId"
-            aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+            aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation" style="color: #3a970f;">
+            <span class="navbar-toggler-icon">
+                <img src="{{ asset('images/logo.png') }}" >
+            </span>
         </button>
         <div class="collapse navbar-collapse" id="collapsibleNavId">
             <ul class="navbar-nav justify-content-between w-100 mt-2 mt-lg-0">
@@ -12,7 +14,7 @@
                         <a class="nav-link text-light fw-bold {{ Route::currentRouteName() == 'guest.home' ? 'active' : '' }}"
                             href="{{ route('guest.home') }}" aria-current="page"> 
                             <div class="app-logo">
-                                <img src="{{ asset('images/color-no-bg.png') }}" >
+                                <img src="{{ asset('images/color-no-bg.png') }}" class="logo-image" >
                             </div> 
                             {{-- Deliveboo <i class='fas fa-motorcycle'
                                 style='font-size:18px; color:white'></i> --}}
@@ -21,7 +23,7 @@
                                 </a>
                     </li>
                     <div class="d-flex">
-                        <li class="nav-item">
+                        <li class="nav-item pe-3" >
                             <a class="nav-link text-light fw-bold" href="{{ route('login') }}">{{ __('Login') }} <i
                                     class="fa-solid fa-user ms-1" me-2></i></a>
                         </li>
@@ -36,7 +38,7 @@
                             <a class="nav-link text-light fw-bold {{ Route::currentRouteName() == 'admin.restaurant' ? 'active' : '' }}"
                                 href="{{ route('admin.restaurant') }}" aria-current="page">
                                 <div class="app-logo">
-                                    <img src="{{ asset('images/color-no-bg.png') }}" >
+                                    <img src="{{ asset('images/color-no-bg.png') }}"  class="logo-image">
                                 </div>
                                 {{-- Deliveboo Admin <i class='fas fa-motorcycle' style='font-size:18px; color:white'></i> --}}
                                 {{-- <span class="visually-hidden">(current)</span> --}}

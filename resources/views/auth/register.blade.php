@@ -19,22 +19,23 @@
 @endsection
 
 @section('content')
-    <div class="row justify-content-center pb-5">
-        <div class="col-8 col-md-8 text-light overlay_register">
+    <div class="justify-content-center row pb-5">
+        <div class="col-12 col-md-8 text-light overlay_register">
             <h2 class="text-center">Unisciti al servizio di consegne a domicilio leader in Europa.</h2>
             <h3 class="text-center">Aumenta i tuoi clienti, le vendite e le tue potenzialità di marketing.</h3>
         </div>
-        <div class="col-8 col-md-12">
+        
+        <div class="sign-up-card col-12 col-md-6">
             <div class="card custom-card">
-                <div class="card-header fw-bold" style='color: #f36d00'>{{ __('Inizia a vendere con Deliveboo') }} <i
-                        class='fas fa-motorcycle' style='font-size:18px; color: #f36d00'></i></div>
+                <div class="card-header fw-bold" style='color: #3a970f'>{{ __('Inizia a vendere con Deliveboo') }} <i
+                        class='fas fa-motorcycle' style='font-size:18px; color: #3a970f'></i></div>
                 <div class="alert alert-warning m-3 d-flex justify-content-between" role="alert">
                     * Campi obbligatori
 
                     {{-- Inizio debug --}}
                     <div id="banner" class="fs-4"></div>
                     <button class="btn btn-danger" id="auto">Prego</button>
-                    {{-- Fine debug --}}
+                    {{-- Fine debug --}
                     {{-- Vanno eliminate dal div di "campi obbligatori" le classi flex --}}
                 </div>
                 @if ($errors->any())
@@ -51,9 +52,9 @@
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data"
-                        onsubmit="return validateForm()" class="d-flex justify-content-center flex-wrap">
+                        onsubmit="return validateForm()" class="sign-up-form">
                         @csrf
-                        <section class="col-md-6">
+                        <section class="personal-info col-12 col-md-6">
                             <div>
                                 <h4>Informazioni Personali:</h4>
                             </div>
@@ -62,7 +63,7 @@
                                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nome') }}
                                     *</label>
 
-                                <div class="col-md-6">
+                                <div class="col-xs-12  col-md-6">
                                     <input id="name" type="text"
                                         class="form-control @error('name') is-invalid @enderror" name="name"
                                         value="{{ old('name') }}" required autocomplete="name" autofocus
@@ -82,7 +83,7 @@
                                 <label for="surname" class="col-md-4 col-form-label text-md-right">{{ __('Cognome') }}
                                     *</label>
 
-                                <div class="col-md-6">
+                                <div class="col-xs-12 col-md-6">
                                     <input id="surname" type="text"
                                         class="form-control @error('surname') is-invalid @enderror" name="surname"
                                         value="{{ old('surname') }}" required autocomplete="surname" autofocus
@@ -102,7 +103,7 @@
                                 <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }}
                                     *</label>
 
-                                <div class="col-md-6">
+                                <div class="col-xs-12 col-md-6">
                                     <input id="email" type="email"
                                         class="form-control @error('email') is-invalid @enderror" name="email"
                                         value="{{ old('email') }}" required autocomplete="email"
@@ -121,7 +122,7 @@
                                 <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}
                                     *</label>
 
-                                <div class="col-md-6 d-flex align-items-center">
+                                <div class="col-xs-12 col-md-6 d-flex align-items-center">
                                     <input id="password" type="password"
                                         class="form-control @error('password') is-invalid @enderror me-2" name="password"
                                         required autocomplete="new-password"
@@ -142,7 +143,7 @@
                             <!-- Add validation for password confirmation field -->
                             <div class="mb-4 row">
                                 <label for="password-confirm"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Conferma Password') }} *</label>
+                                    class="col-xs-12 col-md-4 col-form-label text-md-right">{{ __('Conferma Password') }} *</label>
 
                                 <div class="col-md-6 d-flex align-items-center">
                                     <input id="password-confirm" type="password"
@@ -164,7 +165,7 @@
                             </div>
                         </section>
 
-                        <section class="col-md-6">
+                        <section class=" company-info col-xs-12 col-md-6">
                             <div>
                                 <h4>Dettagli dell'Attività:</h4>
                             </div>
@@ -174,7 +175,7 @@
                                 <label for="restaurant_name"
                                     class="col-md-4 col-form-label text-md-right">{{ __('Nome attività') }} *</label>
 
-                                <div class="col-md-6">
+                                <div class="col-xs-12 col-md-6">
                                     <input id="restaurant_name" type="text"
                                         class="form-control @error('restaurant_name') is-invalid @enderror"
                                         name="restaurant_name" value="{{ old('restaurant_name') }}" required
@@ -190,7 +191,7 @@
                             </div>
 
                             <!-- Add validation for address field -->
-                            <div class="mb-4 row">
+                            <div class="col-xs-12 mb-4 row">
                                 <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo') }}
                                     *</label>
 
@@ -213,7 +214,7 @@
                                 <label for="vat" class="col-md-4 col-form-label text-md-right">{{ __('P.Iva') }}
                                     *</label>
 
-                                <div class="col-md-6">
+                                <div class="col-xs-12 col-md-6">
                                     <input id="vat" type="text"
                                         class="form-control @error('vat') is-invalid @enderror" name="vat"
                                         value="{{ old('vat') }}" required autocomplete="vat" autofocus
@@ -232,7 +233,7 @@
                             <div class="row my-2">
                                 <label for="description" class="col-md-4 col-form-label text-md-right">Descrizione
                                     *</label>
-                                <div class="col-md-6">
+                                <div class="col-xs-12 col-md-6">
                                     <textarea name ="description" id="description" class="form-control @error('description') is-invalid @enderror"
                                         rows="5" pattern=".*" title="Inserisci una descrizione valida"
                                         placeholder="Inserisci la descrizione del tuo ristorante" required></textarea>
@@ -246,14 +247,13 @@
                         </section>
                         <section>
                             <!-- Add validation for types field -->
-                            <div class="col-md-7 mb-4" style="
-                            margin-left: 350px">
+                            <div class="types-field col-xs-12 col-md-7 mb-4">
                                 <div
                                     class="d-flex
                                 row form-check @error('types') is-invalid @enderror">
                                     <h5>Tipo di Cucina *</h5>
                                     @foreach ($types as $type)
-                                        <div class="col-md-5">
+                                        <div class="col-md-12 d-flex">
                                             <input type="checkbox" name="types[]" id="type-{{ $type->id }}"
                                                 value="{{ $type->id }}" class="form-check-control my-2"
                                                 @if (in_array($type->id, old('types', []))) checked @endif>
@@ -268,7 +268,7 @@
                                 @enderror
                             </div>
                             <div class="d-flex justify-content-start">
-                                <div class="col-md-4 me-4">
+                                <div class="col-xs-12 col-md-4 me-4">
                                     <img src="" alt="" id="image_preview" class="img-fluid">
                                 </div>
                                 <!-- Add validation for image field -->
@@ -288,7 +288,7 @@
                             </div>
                         </section>
                         <div class="my-4 row mb-0 col-md-8">
-                            <div class="col-md-6 offset-md-4">
+                            <div class="col-xs-12  col-md-6 offset-md-4">
                                 <button id="submitButton" type="submit" class="btn btn-primary custom_button" disabled>
                                     {{ __('Registrati') }} <i class="fa-solid fa-paper-plane"></i>
                                 </button>
@@ -403,7 +403,7 @@
 
             const inputDescription = document.getElementById('description')
             inputDescription.innerHTML =
-                'Siamo lieti di darvi il benvenuto al nostro ristorante, un luogo dove l\'eccellenza culinaria si unisce a un\'atmosfera accogliente per creare un\'esperienza gastronomica indimenticabile. La nostra cucina è ispirata alla tradizione, ma con un tocco di creatività contemporanea. Utilizziamo solo ingredienti freschi e di alta qualità per preparare piatti che soddisfano i palati più raffinati.'
+                'descrizione molto lunga per testare l\'abstract che tronca una stringa con lunghezza fino ad un tot e aggiunge i 3 puntini, sperando che questa descrizione sia abbastanza lunga, alessandro potresti anche ringraziarmi per questo tasto debug '
 
 
             const inputCheckbox = document.getElementById('type-' + indexCheckBox)

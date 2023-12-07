@@ -12,11 +12,11 @@
     </div>
     <div class="row">
 
-        <div class="col-sm-1 col-md-4">
+        <div class="col-xs-10 col-md-4">
 
             <img src="{{ $placeholder }}" alt="" id="image_preview" class="img-fluid">
         </div>
-        <div class="col-sm-1 col-md-8">
+        <div class="col-xs-10 col-md-8">
             <div class="alert alert-warning" role="alert">
                 * Campi obbligatori
             </div>
