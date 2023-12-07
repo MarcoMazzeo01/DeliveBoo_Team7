@@ -403,7 +403,7 @@
 
             const inputDescription = document.getElementById('description')
             inputDescription.innerHTML =
-                'descrizione molto lunga per testare l\'abstract che tronca una stringa con lunghezza fino ad un tot e aggiunge i 3 puntini, sperando che questa descrizione sia abbastanza lunga, alessandro potresti anche ringraziarmi per questo tasto debug '
+                'Siamo lieti di darvi il benvenuto al nostro ristorante, un luogo dove l\'eccellenza culinaria si unisce a un\'atmosfera accogliente per creare un\'esperienza gastronomica indimenticabile. La nostra cucina è ispirata alla tradizione, ma con un tocco di creatività contemporanea. Utilizziamo solo ingredienti freschi e di alta qualità per preparare piatti che soddisfano i palati più raffinati.'
 
 
             const inputCheckbox = document.getElementById('type-' + indexCheckBox)
