@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-    <div class="d-flex justify-content-between mb-3">
+    <div class="d-flex justify-content-between mb-3 pt-3">
         <h1 class="menu-title" style="color: #3a970f">MENÙ</h1>
 
         <div>

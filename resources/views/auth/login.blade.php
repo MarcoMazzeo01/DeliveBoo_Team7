@@ -11,7 +11,7 @@
         #app {
             height: 100vh;
             background-image: url("https://www.projectinvictus.it/wp-content/uploads/2022/08/junk-food-1280x720.jpg");
-            background-repeat: no-repeat;
+            background-repeat: repeat;
             background-size: cover;
             background-position: center;
         }
@@ -21,11 +21,10 @@
 @section('content')
     <div class="row custom_container justify-content-center">
         <div class="overlay col-6 col-md-8">
-            <h2 class="text-light text-center">Bentornato nel servizio di consegne a domicilio leader in Europa! Cosa aspetti
-                ad
-                accedere?</h2>
+            <h2 class="h2-full text-light text-center">Bentornato nel servizio di consegne a domicilio leader in Europa! Cosa aspetti a accedere?</h2>
+            <h2 class="h2-mobile text-light text-center"> Cosa aspetti ad accedere?</h2>
         </div>
-        <div class="col-6 col-md-8">
+        <div class="col-xs-2 col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
 
