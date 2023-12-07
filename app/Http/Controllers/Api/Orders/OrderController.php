@@ -10,10 +10,12 @@ use Illuminate\Http\Request;
 use App\Models\Dish;
 use App\Models\Order;
 
-class OrderController extends Controller {
+class OrderController extends Controller
+{
 
 
-    public function orderDataForm(OrderDataFormRequest $request) {
+    public function orderDataForm(OrderDataFormRequest $request)
+    {
 
         $request->validated();
 
@@ -24,8 +26,8 @@ class OrderController extends Controller {
 
         $dishIds = [];
 
-        foreach($dishes as $dishId) {
-            if($restaurantId !== $dataOrder['restaurant_id'])
+        foreach ($dishes as $dishId) {
+            if ($restaurantId !== $dataOrder['restaurant_id'])
                 return abort(404);
             $dishIds[] = $dishId['id'];
         }
@@ -33,8 +35,8 @@ class OrderController extends Controller {
 
         $dishesValidation = Dish::select('restaurant_id')->whereIn('id', $dishIds)->get();
 
-        foreach($dishesValidation as $dishValidation) {
-            if($dishValidation->restaurant_id !== $restaurantId)
+        foreach ($dishesValidation as $dishValidation) {
+            if ($dishValidation->restaurant_id !== $restaurantId)
                 return abort(404);
         }
 
@@ -52,7 +54,8 @@ class OrderController extends Controller {
 
 
 
-    public function saveDataForm(Request $request) {
+    public function saveDataForm(Request $request)
+    {
 
         $formData = $request['form'];
         $dataOrder = $request['order'];
@@ -62,21 +65,20 @@ class OrderController extends Controller {
         $dishIds = [];
         $total = 0;
 
-        foreach($dishes as $dish) {
+        foreach ($dishes as $dish) {
             $dishIds[] = $dish['id'];
-        }
-        ;
+        };
 
 
 
         $dishesForPriceCalc = Dish::whereIn('id', $dishIds)->get();
 
-        foreach($dishes as $dish) {
+        foreach ($dishes as $dish) {
 
             $dishForPriceCalc = $dishesForPriceCalc->where('id', $dish['id'])->first();
 
-            if($dishForPriceCalc)
-                $total += ($dish['quantity'] * $dishForPriceCalc->price);
+            if ($dishForPriceCalc)
+                $total += ($dish['qty'] * $dishForPriceCalc->price);
         }
 
 
@@ -93,9 +95,9 @@ class OrderController extends Controller {
 
         $order->save();
 
-        foreach($dishes as $dish) {
+        foreach ($dishes as $dish) {
 
-            $order->dishes()->attach($dish['id'], ['quantity' => $dish['quantity']]);
+            $order->dishes()->attach($dish['id'], ['qty' => $dish['qty']]);
         }
         return response()->json($dishes);
     }
@@ -103,7 +105,8 @@ class OrderController extends Controller {
 
 
 
-    public function generate(Request $request, Gateway $gateway) {
+    public function generate(Request $request, Gateway $gateway)
+    {
 
 
 
@@ -115,7 +118,8 @@ class OrderController extends Controller {
         return response()->json($data, 200);
     }
 
-    public function makePayment(OrderRequest $request, Gateway $gateway) {
+    public function makePayment(OrderRequest $request, Gateway $gateway)
+    {
 
         $_request = $request->validated();
 
@@ -133,7 +137,7 @@ class OrderController extends Controller {
         ]);
 
 
-        if($result->success) {
+        if ($result->success) {
             $data = [
                 'succes' => true,
                 'message' => "Transazione eseguita"
@@ -147,5 +151,4 @@ class OrderController extends Controller {
             return response()->json($data, 401);
         }
     }
-
 }
