@@ -56,34 +56,45 @@ class OrderController extends Controller
 
     public function saveDataForm(Request $request)
     {
+        if (!isset($request['form']) || !is_array($request['form'])) {
+            return response()->json(['error' => 'Form data is not set or is not an array'], 400);
+        }
+
+        if (!isset($request['order']) || !is_array($request['order'])) {
+            return response()->json(['error' => 'Order data is not set or is not an array'], 400);
+        }
+
+        if (!isset($request['order']['dishes']) || !is_array($request['order']['dishes'])) {
+            return response()->json(['error' => 'Dishes data is not set or is not an array'], 400);
+        }
 
         $formData = $request['form'];
         $dataOrder = $request['order'];
         $dishes = $dataOrder['dishes'];
 
-
         $dishIds = [];
         $total = 0;
 
         foreach ($dishes as $dish) {
+            if (!isset($dish['id']) || !isset($dish['qty'])) {
+                return response()->json(['error' => 'Dish id or quantity is not set'], 400);
+            }
+
             $dishIds[] = $dish['id'];
-        };
-
-
+        }
 
         $dishesForPriceCalc = Dish::whereIn('id', $dishIds)->get();
 
         foreach ($dishes as $dish) {
-
             $dishForPriceCalc = $dishesForPriceCalc->where('id', $dish['id'])->first();
 
-            if ($dishForPriceCalc)
+            if ($dishForPriceCalc) {
                 $total += ($dish['qty'] * $dishForPriceCalc->price);
+            }
         }
 
 
         $order = new Order;
-
         $order->customer_name = $formData['name'];
         $order->customer_surname = $formData['lastName'];
         $order->customer_phone = $formData['tel'];
@@ -92,13 +103,12 @@ class OrderController extends Controller
         $order->customer_email = $formData['email'];
         $order->total = $total;
 
-
         $order->save();
 
         foreach ($dishes as $dish) {
-
-            $order->dishes()->attach($dish['id'], ['qty' => $dish['qty']]);
+            $order->dishes()->attach($dish['id'], ['quantity' => $dish['qty']]);
         }
+
         return response()->json($dishes);
     }
 
