@@ -1,8 +1,10 @@
 <?php
 
-// use App\Http\Controllers\RestaurantController;
+
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\DishController;
+use App\Http\Controllers\OrderGrapichController;
+
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\PageController as AdminPageController;
@@ -30,13 +32,12 @@ Route::middleware(['auth', 'verified'])
 
     Route::get('/', [AdminPageController::class, 'index'])->name('home');
 
-
-    // Route::resource('restaurant', RestaurantController::class)->only(['index', 'show']);
   
     Route::get('/restaurant', [RestaurantController::class, 'index'])->name('restaurant');
 
     // CRUD dishController
     Route::resource('dish', DishController::class);
-  });
 
+    // controlPannel for User
+    Route::get('/order', [OrderGrapichController::class, 'controlPannel'])->name('order');  });
 require __DIR__ . '/auth.php';
