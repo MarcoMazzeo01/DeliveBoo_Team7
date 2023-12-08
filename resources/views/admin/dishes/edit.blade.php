@@ -11,13 +11,13 @@
             <a class="btn custom_button" href="{{ route('admin.dish.index') }}">Torna al menù</a>
         </div>
         <div class="row">
-            <div class="col-4">
+            <div class="col-xs-10 col-md-4">
 
                 <img src="{{ $dishDetail->image ? asset('/storage/' . $dishDetail->image) : $placeholder }}" alt=""
                     id="image_preview" class="img-fluid">
 
             </div>
-            <div class="col-8">
+            <div class="col-xs-10 col-md-8">
                 <div class="alert alert-warning" role="alert">
                     * Campi obbligatori
                 </div>
