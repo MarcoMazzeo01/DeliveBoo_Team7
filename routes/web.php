@@ -40,7 +40,7 @@ Route::middleware(['auth', 'verified'])
     Route::resource('dish', DishController::class);
 
     // For orders
-    Route::resource('/orders-summary', OrderController::class)->only(['index', 'show']);
+    Route::get('/orders-summary',[ OrderController::class, 'index'])->name('orders-summary');
   });
 
 

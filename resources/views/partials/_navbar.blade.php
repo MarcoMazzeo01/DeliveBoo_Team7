@@ -70,7 +70,7 @@
                                     >
                                     Il mio ristorante
                                 </a>
-                                    <a class="dropdown-item" href="{{ route('admin.orders-summary.index') }}"
+                                    <a class="dropdown-item" href="{{ route('admin.orders-summary') }}"
                                         >
                                         Riepilogo ordini
                                     </a>

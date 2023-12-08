@@ -11,15 +11,15 @@ class Order extends Model
     
     public function dishes()
     {
-        return $this->belongsToMany(Dish::class);
+        return $this->belongsToMany(Dish::class)->withPivot('quantity');
     }
     
+    protected $dates = ['created_at'];
     public function getOrderDateAttribute()
     {
         return $this->created_at->format('d/m/Y');
     }
     
-    protected $dates = ['created_at'];
    public function getOrderTimeAttribute()
    {
        return $this->created_at->format('H:i:s');
