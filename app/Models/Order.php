@@ -15,12 +15,12 @@ class Order extends Model
     }
     
     protected $dates = ['created_at'];
-    public function getOrderDateAttribute()
+    public function getOrderDate()
     {
         return $this->created_at->format('d/m/Y');
     }
     
-   public function getOrderTimeAttribute()
+   public function getOrderTime()
    {
        return $this->created_at->format('H:i:s');
    }
