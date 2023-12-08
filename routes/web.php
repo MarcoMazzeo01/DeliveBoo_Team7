@@ -4,6 +4,7 @@
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\DishController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\OrderController;
 
 use App\Http\Controllers\Admin\PageController as AdminPageController;
 use App\Http\Controllers\Guest\PageController as GuestPageController;
@@ -37,6 +38,11 @@ Route::middleware(['auth', 'verified'])
 
     // CRUD dishController
     Route::resource('dish', DishController::class);
+
+    // For orders
+    Route::resource('/orders-summary', OrderController::class)->only(['index', 'show']);
   });
+
+
 
 require __DIR__ . '/auth.php';
