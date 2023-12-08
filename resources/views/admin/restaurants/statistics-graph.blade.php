@@ -2,34 +2,116 @@
 
 @section('content')
 
+
+
 <div class="container">
-    <canvas id="myChart"></canvas>
+  <div class="row row-cols-3 gap-5 justify-content-center">
+    <div class="col text-center">
+      <h3>Statistiche oggi:</h3>
+      <canvas id="dish-today"></canvas>
+    </div>
+    <div class="col text-center">
+      <h3>Statistiche globali:</h3>
+      <canvas id="dish-all"></canvas>
+    </div>
+
+  </div>
 </div>
 
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 @endsection
 
 @section('script')
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script type="text/javascript">
- const ctx = document.getElementById('myChart');
+<script>
+  const dishesToday = document.getElementById('dish-today');
+  const dishesAll = document.getElementById('dish-all');
 
-new Chart(ctx, {
-  type: 'bar',
-  data: {
-    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-    datasets: [{
-      label: '# of Votes',
-      data: [12, 19, 3, 5, 2, 3],
-      borderWidth: 1
-    }]
-  },
-  options: {
-    scales: {
-      y: {
-        beginAtZero: true
+const dataToday = @json($dataToday);
+const dataAll = @json($dataAll)
+
+console.log(dataAll);
+console.log(dataToday);
+
+const dishesName = [];
+
+const dishesQtyToday = [];
+const dishesRevenueToday = [];
+
+const dishesQtyAll = [];
+const dishesRevenueAll = [];
+
+dataToday.forEach(dish => {
+
+  dishesName.push(dish.name)
+  dishesQtyToday.push(dish.total_quantity)
+  dishesRevenueToday.push(dish.total_price)
+
+});
+
+dataAll.forEach(dish => {
+
+dishesQtyAll.push(dish.total_quantity)
+dishesRevenueAll.push(dish.total_price)
+
+});
+
+  new Chart(dishesToday, {
+
+    type: 'pie',
+    data: {
+      labels: dishesName,
+      datasets: [{
+        label: 'Tot ordini',
+        data: dishesQtyToday,
+        borderWidth: 1
+      },
+      {
+        label: 'Tot Ricavi €',
+        data: dishesRevenueToday,
+        
+        borderWidth: 1
+      }
+    ]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
       }
     }
+  });
+
+  new Chart(dishesAll, {
+
+type: 'pie',
+data: {
+  labels: dishesName,
+  datasets: [{
+    label: 'Tot ordini',
+    data: dishesQtyAll,
+    borderWidth: 1
+  },
+  {
+    label: 'Tot Ricavi €',
+    data: dishesRevenueAll,
+    
+    borderWidth: 1
   }
+]
+},
+options: {
+  scales: {
+    y: {
+      beginAtZero: true
+    }
+  }
+}
 });
 
 </script>
