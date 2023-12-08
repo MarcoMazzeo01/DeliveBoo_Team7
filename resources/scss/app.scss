@@ -208,3 +208,40 @@ main {
         display: block;
     }
 }
+
+//orders Summary
+
+.btn-details {
+    background-color: #3a970f;
+    border: 1px solid #3a970f;
+    border-radius: 5px;
+    color: white;
+}
+
+.offcanvas-body,
+.offcanvas-header {
+    background-color: #222629;
+    color: white;
+}
+.xclose {
+    color: #eee !important;
+}
+
+.order-details {
+    border: 2px solid #3a970f !important;
+    border-radius: 20px !important;
+}
+
+.green-txt {
+    color: #46b612;
+    padding-right: 0.6rem;
+}
+.mobile-full-breakpoint {
+    display: none;
+}
+
+@media screen and (min-width: 768px) {
+    .mobile-full-breakpoint {
+        display: table-cell;
+    }
+}

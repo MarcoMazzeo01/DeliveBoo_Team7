@@ -7,43 +7,76 @@
 @endsection
 
 @section('content')
-<h3> RIepilogo ordini </h3>
-<table class="table">
-   <!-- ... -->
-   <tbody>
-       @foreach($orders as $order)
-       <tr>
-           <th scope="row"> {{ $order->id }} </th>
-           <td>{{ $order->customer_name }}</td>
-           <td>{{ $order->customer_surname }}</td>
-           <td>{{ $order->customer_email }}</td>
-           <td>{{ $order->customer_phone }}</td>
-           <td>{{ $order->address }}</td>
-           <td>{{ $order->getOrderDateAttribute() }}</td>
-           <td>
-               <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas{{$order->id}}" aria-controls="offcanvas{{$order->id}}">Dishes</button>
-               <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas{{$order->id}}" aria-labelledby="offcanvas{{$order->id}}Label">
-                  <div class="offcanvas-header">
-                      <h5 class="offcanvas-title" id="offcanvas{{$order->id}}Label">Order Details</h5>
-                      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                  </div>
-                  <div class="offcanvas-body">
-                      <ul>
-                          @foreach($ordersDishes as $orderDish)
-                              @if($orderDish->id == $order->id)
-                                 @foreach($orderDish->dishes as $dish)
-                                     <li>{{$dish->name}} x {{$dish->pivot->quantity}}</li>
-                                 @endforeach
-                              @endif
-                          @endforeach 
-                      </ul>
-                  </div>
-               </div>
-           </td>
-       </tr>
-       @endforeach
-   </tbody>
-</table>
+<div class="container">
+    <h3>Riepilogo ordini</h3>
+    <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Cognome</th>
+                        <th scope="col" class="mobile-full-breakpoint">Telefono <i class="fas fa-phone"></i></th>
+                        <th scope="col" class="mobile-full-breakpoint">Indirizzo <i class="fas fa-map-marker-alt"></i></th>
+                        <th scope="col">Data <i class="fas fa-calendar-alt"></i></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($orders as $order)
+                    <tr>
+                        <td > <b>{{ $order->id }}</b></td>
+                        <td>{{ $order->customer_name }}</td>
+                        <td>{{ $order->customer_surname }}</td>
+                        <td class="mobile-full-breakpoint">{{ $order->customer_phone }}</td>
+                        <td class="mobile-full-breakpoint">{{ $order->address }}</td>
+                        <td>{{ $order->getOrderDate() }}</td>
 
+                        {{-- Order-details offCanvas --}}
+                        <td>
+                            <button class="btn-details" type="button" data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvas{{$order->id}}" aria-controls="offcanvas{{$order->id}}"> <i class="fa-solid fa-circle-info"></i></button>
+                            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas{{$order->id}}"
+                                aria-labelledby="offcanvas{{$order->id}}Label">
+                                <div class="offcanvas-header">
+                                    <button type="button" class=" xclose btn-close" data-bs-dismiss="offcanvas"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="offcanvas-body">
+                                    <h5>ID ordine: {{$order->id}}</h5>
 
+                                    <div class="order-details card">
+                                        <div class="card-body">
+                                        <h5 class="card-title"><b>Articoli:</b> </h5>
+                                        @foreach($ordersDishes as $orderDish)
+                                        @if($orderDish->id == $order->id)
+                                            @foreach($orderDish->dishes as $dish)
+                                                <p>{{$dish->pivot->quantity}} {{$dish->name}}</p>
+                                            @endforeach
+                                                <hr>
+                                                <p><b>Totale ordine:</b> {{$order->total}}€</p>
+                                        @endif
+                                        @endforeach
+                                        </div>
+                                    </div>
+                                        @if(empty($order->notes))
+                                            <p><b class=green-txt>Note: </b>...</p>
+                                        @else
+                                            <p><b class=green-txt>Note</b>: {{$order->notes}} </p>
+                                        @endif
+                                        <p><i class=" green-txt fa-solid fa-map-pin"></i>  {{$order->address}}</p>
+                                        <p><i class=" green-txt fas fa-phone"></i> {{$order->customer_phone}}</p>
+                                        <p><i class=" green-txt fas fa-envelope"></i> {{$order->customer_email}}</p>
+                                        <p><i class=" green-txt fa-regular fa-calendar"></i> {{$order->getOrderDate()}} <br><span><i class=" green-txt fa-regular fa-clock"></i>  {{$order->getOrderTime()}}</span> </p>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        {{-- Pagination --}}
+        {{ $orders->links('pagination::bootstrap-5') }}
+    </div>
+</div>
 @endsection
