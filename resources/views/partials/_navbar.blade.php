@@ -59,9 +59,23 @@
                                         {{ __('Logout') }}
                                     </a>
 
-                            <li class="nav-item">
-                                <a class="nav-link text-light fw-bold" href="{{ route('admin.restaurant') }}">My
-                                    Restaurant</a>
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-light fw-bold" href="#"
+                                role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                v-pre href="{{ route('admin.restaurant') }}"> 
+                                    Ristorante 
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('admin.restaurant') }}"
+                                    >
+                                    Il mio ristorante
+                                </a>
+                                    <a class="dropdown-item" href="{{ route('admin.orders-summary.index') }}"
+                                        >
+                                        Riepilogo ordini
+                                    </a>
+
+                                    
                             </li>
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
