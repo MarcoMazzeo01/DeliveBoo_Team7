@@ -20,7 +20,7 @@ class OrderReceived extends Mailable
      * @return void
      */
     public $order;
-    public function __construct($order)
+    public function __construct(Order $order)
     {
         $this->order = $order;
     }

@@ -5,10 +5,14 @@ namespace App\Http\Controllers\Api\Orders;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Orders\OrderRequest;
 use App\Http\Requests\Orders\OrderDataFormRequest;
+use App\Mail\OrderReceived;
 use Braintree\Gateway;
 use Illuminate\Http\Request;
 use App\Models\Dish;
 use App\Models\Order;
+use App\Models\User;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -105,11 +109,13 @@ class OrderController extends Controller
 
         $order->save();
 
+        $user_email = User::where('id', $dataOrder['restaurant_id'])->value('email');
+        Mail::to($user_email)->send(new OrderReceived($order));
+        Mail::to($order->customer_email)->send(new OrderReceived($order));
+
         foreach ($dishes as $dish) {
             $order->dishes()->attach($dish['id'], ['quantity' => $dish['qty']]);
         }
-
-        return response()->json($dishes);
     }
 
 
@@ -157,6 +163,7 @@ class OrderController extends Controller
 
 
         if ($result->success) {
+
             $data = [
                 'succes' => true,
                 'message' => "Transazione eseguita"
@@ -169,6 +176,8 @@ class OrderController extends Controller
             ];
             return response()->json($data, 401);
         }
+
+        
         
     }
 }
