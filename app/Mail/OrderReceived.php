@@ -20,7 +20,7 @@ class OrderReceived extends Mailable
      * @return void
      */
     public $order;
-    public function __construct(Order $order)
+    public function __construct($order)
     {
         $this->order = $order;
     }
@@ -44,9 +44,10 @@ class OrderReceived extends Mailable
      */
     public function content()
     {
+        $order = $this->order;
         return new Content(
-            view: 'mail.OrderReceived',
-            with: compact('dishes', 'orders'),
+            view: 'mail.orderReceived',
+            with: compact('order'),
         );
     }
 

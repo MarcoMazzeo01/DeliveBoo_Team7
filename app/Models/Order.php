@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\OrderReceived;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 class Order extends Model
 {
@@ -27,22 +28,17 @@ class Order extends Model
        return $this->created_at->format('H:i:s');
    }
 
-   public function orderReceivedOwner(Order $order) {
+   public function orderReceived(Order $order) {
 
     $mail_order_received = new OrderReceived($order);
 
+    //invio al ristoratore
     $user = Auth::user();
     Mail::to($user->email)->send($mail_order_received);
 
+    //invio all'utente
+    // Mail::to($order->customer_email)->send($mail_order_received);
+
     return redirect()->back();
    }
-
-//    public function orderReceivedClient(Order $order) {
-
-//     $mail_order_received = new OrderReceived($order);
-//     //invio all'utente
-//     Mail::to($order->customer_email)->send($mail_order_received);
-
-//     return redirect()->back();
-//    }
 }

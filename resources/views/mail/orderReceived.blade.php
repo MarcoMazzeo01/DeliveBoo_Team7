@@ -9,9 +9,15 @@
 </style>
 <body>
     
-    <p> Hai ricevuto un'nuovo ordine </p>
+    <!-- mail.orderReceived.blade.php -->
+<p>Hai ricevuto un nuovo ordine!</p>
+<p>ID: {{ $order->id }}</p>
+<p>data: {{ $order->getOrderDate() }}</p>
+<p>Time: {{ $order->getOrderTime() }}</p>
+<!-- Display other order details as needed -->
 
-    <div class="order-details">
+
+    {{-- <div class="order-details">
         <h5>ID ordine: {{$order->id}}</h5>
 
         <div class="order-details card">
@@ -37,7 +43,7 @@
             <p><i class=" green-txt fas fa-phone"></i> {{$order->customer_phone}}</p>
             <p><i class=" green-txt fas fa-envelope"></i> {{$order->customer_email}}</p>
             <p><i class=" green-txt fa-regular fa-calendar"></i> {{$order->getOrderDate()}} <br><span><i class=" green-txt fa-regular fa-clock"></i>  {{$order->getOrderTime()}}</span> </p>
-    </div>
+    </div> --}}
 
 </body>
 </html>
