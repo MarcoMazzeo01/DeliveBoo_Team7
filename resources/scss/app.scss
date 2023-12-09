@@ -131,6 +131,7 @@ main {
 }
 
 .animation-img {
+    display: none;
     position: absolute;
     left: 0;
     top: 420px;
@@ -207,16 +208,14 @@ main {
     .logo-image {
         display: block;
     }
+}
+
+@media screen and (min-width: 768px) {
     .animation-img {
-        display: none;
+        display: block;
     }
 }
 
-// @media screen and (min-width: 576px) {
-//     .animation-img {
-//         display: none;
-//     }
-// }
 //orders Summary
 
 .btn-details {
