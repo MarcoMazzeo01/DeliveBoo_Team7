@@ -22,8 +22,6 @@ class OrderController extends Controller
     {
 
         $request->validated();
-
-
         $dataOrder = $request['order'];
         $dishes = $dataOrder['dishes'];
         $restaurantId = $dataOrder['restaurant_id'];
@@ -48,10 +46,6 @@ class OrderController extends Controller
             "form" => $request['form'],
             'order' => $request['order']
         ];
-
-
-
-
 
         return response()->json($dataValid);
     }
@@ -110,8 +104,8 @@ class OrderController extends Controller
         $order->save();
 
         $user_email = User::where('id', $dataOrder['restaurant_id'])->value('email');
-        Mail::to($user_email)->send(new OrderReceived($order));
-        Mail::to($order->customer_email)->send(new OrderReceived($order));
+        Mail::to($user_email)->send(new OrderReceived($order, 'owner'));
+        Mail::to($order->customer_email)->send(new OrderReceived($order, 'customer'));
 
         foreach ($dishes as $dish) {
             $order->dishes()->attach($dish['id'], ['quantity' => $dish['qty']]);
