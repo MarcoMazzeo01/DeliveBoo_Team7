@@ -20,10 +20,14 @@ class OrderReceived extends Mailable
      * @return void
      */
     public $order;
-    public function __construct(Order $order)
+    public $content;
+    public function __construct(Order $order, $content)
     {
         $this->order = $order;
+        $this->content = $content;
     }
+
+
 
     /**
      * Get the message envelope.
@@ -32,8 +36,10 @@ class OrderReceived extends Mailable
      */
     public function envelope()
     {
+        $content = $this->content;
+        $subject = ($content === 'owner') ? 'Hai ricevuto un nuovo ordine' : 'Ordine confermato';
         return new Envelope(
-            subject: 'Ordine confermato',
+            subject: $subject,
         );
     }
 
@@ -45,9 +51,12 @@ class OrderReceived extends Mailable
     public function content()
     {
         $order = $this->order;
+        $content = $this->content;
+
+        $view = ($content === 'owner') ? 'mail.orderReceivedOwner' : 'mail.orderReceivedCustomer';
         return new Content(
-            view: 'mail.orderReceived',
-            with: compact('order'),
+            view: $view,
+            with: compact('order', 'content'),
         );
     }
 
