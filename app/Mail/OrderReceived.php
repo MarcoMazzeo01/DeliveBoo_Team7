@@ -21,12 +21,14 @@ class OrderReceived extends Mailable
      */
     public $order;
     public $content;
+
+    public $dishes;
     public function __construct(Order $order, $content)
     {
         $this->order = $order;
         $this->content = $content;
+        $this->dishes = $order->dishes;
     }
-
 
 
     /**
@@ -52,11 +54,12 @@ class OrderReceived extends Mailable
     {
         $order = $this->order;
         $content = $this->content;
+        $dishes = $this->dishes;
 
         $view = ($content === 'owner') ? 'mail.orderReceivedOwner' : 'mail.orderReceivedCustomer';
         return new Content(
             view: $view,
-            with: compact('order', 'content'),
+            with: compact('order', 'content', 'dishes'),
         );
     }
 

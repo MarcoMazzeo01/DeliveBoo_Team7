@@ -103,13 +103,19 @@ class OrderController extends Controller
 
         $order->save();
 
-        $user_email = User::where('id', $dataOrder['restaurant_id'])->value('email');
-        Mail::to($user_email)->send(new OrderReceived($order, 'owner'));
-        Mail::to($order->customer_email)->send(new OrderReceived($order, 'customer'));
+        $orderId = $order->id;
 
         foreach ($dishes as $dish) {
             $order->dishes()->attach($dish['id'], ['quantity' => $dish['qty']]);
         }
+
+        $orderWithDishes = Order::with('dishes')->find($orderId);
+
+        $user_email = User::where('id', $dataOrder['restaurant_id'])->value('email');
+        // Mail::to($user_email)->send(new OrderReceived($order, 'owner'));
+        // Mail::to($order->customer_email)->send(new OrderReceived($order, 'customer'));
+        Mail::to($user_email)->send(new OrderReceived($orderWithDishes, 'owner'));
+        Mail::to($order->customer_email)->send(new OrderReceived($orderWithDishes, 'customer'));
     }
 
 
@@ -137,11 +143,11 @@ class OrderController extends Controller
 
         $prova = $request['order'];
 
-        foreach($prova['dishes'] as $dish){
+        foreach ($prova['dishes'] as $dish) {
             $dishEl = Dish::find($dish['id']);
 
             $total += ($dishEl->price * $dish['qty']);
-            
+
         }
 
         $nonceFromTheClient = $request['payment_method_nonce'];
@@ -171,7 +177,7 @@ class OrderController extends Controller
             return response()->json($data, 401);
         }
 
-        
-        
+
+
     }
 }
