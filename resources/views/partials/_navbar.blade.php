@@ -16,10 +16,7 @@
                             <div class="app-logo">
                                 <img src="{{ asset('images/color-no-bg.png') }}" class="logo-image" >
                             </div> 
-                            {{-- Deliveboo <i class='fas fa-motorcycle'
-                                style='font-size:18px; color:white'></i> --}}
-                                {{-- <span class="visually-hidden">(current) --}}
-                                    {{-- </span> --}}
+                            
                                 </a>
                     </li>
                     <div class="d-flex">
@@ -40,8 +37,7 @@
                                 <div class="app-logo">
                                     <img src="{{ asset('images/color-no-bg.png') }}"  class="logo-image">
                                 </div>
-                                {{-- Deliveboo Admin <i class='fas fa-motorcycle' style='font-size:18px; color:white'></i> --}}
-                                {{-- <span class="visually-hidden">(current)</span> --}}
+                                
                             </a>
                         </div>
                         <div class="d-flex flex-row">
@@ -73,6 +69,11 @@
                                     <a class="dropdown-item" href="{{ route('admin.orders-summary') }}"
                                         >
                                         Riepilogo ordini
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('admin.orders-summary') }}"
+                                        >
+                                        Le mie statistiche
                                     </a>
 
                                     
