@@ -71,7 +71,7 @@
                                         Riepilogo ordini
                                     </a>
 
-                                    <a class="dropdown-item" href="{{ route('admin.orders-summary') }}"
+                                    <a class="dropdown-item" href="{{ route('admin.order') }}"
                                         >
                                         Le mie statistiche
                                     </a>
