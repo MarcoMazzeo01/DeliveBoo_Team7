@@ -207,7 +207,16 @@ main {
     .logo-image {
         display: block;
     }
+    .animation-img {
+        display: none;
+    }
 }
+
+// @media screen and (min-width: 576px) {
+//     .animation-img {
+//         display: none;
+//     }
+// }
 //orders Summary
 
 .btn-details {
