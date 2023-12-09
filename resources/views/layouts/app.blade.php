@@ -10,10 +10,8 @@
 
     <title>Deliveboo Partner</title>
 
-    <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/x-icon" />
-
-
     <!-- Fonts -->
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.png') }}">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 

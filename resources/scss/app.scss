@@ -131,10 +131,11 @@ main {
 }
 
 .animation-img {
+    display: none;
     position: absolute;
     left: 0;
     top: 420px;
-    max-width: 350px;
+    max-width: 30%;
     animation: moveImage 6s linear infinite;
 }
 
@@ -208,6 +209,13 @@ main {
         display: block;
     }
 }
+
+@media screen and (min-width: 768px) {
+    .animation-img {
+        display: block;
+    }
+}
+
 //orders Summary
 
 .btn-details {
