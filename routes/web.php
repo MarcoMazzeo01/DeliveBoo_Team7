@@ -45,7 +45,7 @@ Route::middleware(['auth', 'verified'])
 
     // For orders
     Route::get('/orders-summary',[ OrderController::class, 'index'])->name('orders-summary');
-
+  });
 
 
 require __DIR__ . '/auth.php';
