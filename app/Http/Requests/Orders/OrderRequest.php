@@ -25,7 +25,7 @@ class OrderRequest extends FormRequest
     {
 
         return [
-            'id' => 'required|numeric',
+            // 'id' => 'required|numeric',
             'payment_method_nonce' => 'required|string'
             
         ];
