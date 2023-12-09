@@ -14,7 +14,7 @@ class OrderGrapichController extends Controller
         $user = auth()->id();
         
 
-        $dataToday = Dish::withTrashed()
+        $dataAll = Dish::withTrashed()
         ->leftJoin('dish_order', 'dishes.id', '=', 'dish_order.dish_id')
         ->where('dishes.restaurant_id', $user) 
         ->select(
@@ -28,7 +28,7 @@ class OrderGrapichController extends Controller
 
         $today = now()->toDateString(); // Ottieni la data corrente come stringa (es. 'YYYY-MM-DD')
     
-        $dataAll = Dish::withTrashed()
+        $dataToday = Dish::withTrashed()
             ->join('dish_order', 'dishes.id', '=', 'dish_order.dish_id')
             ->join('orders', 'dish_order.order_id', '=', 'orders.id')
             ->where('dishes.restaurant_id', $user)
@@ -46,7 +46,7 @@ class OrderGrapichController extends Controller
         
        
         
-    );
+    );  
 
     }
 }
