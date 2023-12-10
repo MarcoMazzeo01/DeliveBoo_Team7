@@ -6,6 +6,7 @@ use App\Models\Order;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Restaurant;
 
 class OrderController extends Controller
 {
@@ -17,12 +18,14 @@ class OrderController extends Controller
     public function index()
     {
         $user = Auth::user();
+        $restaurant = Restaurant::where('id', $user->id);
     
-        $orders = Order::where('id', $user->id)
+        $orders = Order::all()
+            ->dishes()->where('restaurant_id', $restaurant)
             ->orderBy('created_at', 'desc')
             ->paginate(5);
     
-        $ordersDishes = Order::where('id', $user->id)
+        $ordersDishes = Order::where()
             ->with('dishes')
             ->get();
     
