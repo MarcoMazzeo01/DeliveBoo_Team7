@@ -14,7 +14,7 @@
       <h4>Ricavo per piatto: <span id='revenue-date'> Oggi</span></h4>
       <canvas id="revenue"></canvas>
     </div>
-<button class="btn btn-primary " id='change_grapich'>Annuale</button>
+<button class="btn btn-primary " id='change_grapich'>Passa ad annuale</button>
   </div>
 </div>
 
@@ -126,7 +126,7 @@ const changeGrapich = document.getElementById('change_grapich');
 
       qtyDate.innerHTML = 'Oggi';
       revenueDate.innerHTML = 'Oggi';
-      changeGrapich.innerHTML = 'Annuale';
+      changeGrapich.innerHTML = 'Passa ad annuale';
       
     }else{
      
@@ -135,7 +135,7 @@ const changeGrapich = document.getElementById('change_grapich');
 
       qtyDate.innerHTML = 'Annuale';
       revenueDate.innerHTML = 'Annuale';
-      changeGrapich.innerHTML = 'Odierno';
+      changeGrapich.innerHTML = 'Passa ad odierno';
     }
 
 
