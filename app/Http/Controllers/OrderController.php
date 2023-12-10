@@ -18,18 +18,23 @@ class OrderController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $restaurant = Restaurant::where('id', $user->id);
-    
-        $orders = Order::all()
-            ->dishes()->where('restaurant_id', $restaurant)
+        $restaurant = Restaurant::where('id', $user->id)->first();
+
+        $orders = Order::whereHas('dishes', function ($query) use ($restaurant) {
+            $query->where('restaurant_id', $restaurant->id);
+        })
             ->orderBy('created_at', 'desc')
             ->paginate(5);
-    
-        $ordersDishes = Order::where()
-            ->with('dishes')
+        // ->items();
+
+        // $orders = Order::all()
+        //     ->dishes()->where('restaurant_id', $restaurant)
+        //     ->orderBy('created_at', 'desc')
+        //     ->paginate(5);
+
+        $ordersDishes = Order::with('dishes')
             ->get();
-    
+
         return view("admin.orders.ordersSummary", compact('orders', 'ordersDishes'));
     }
-    
 }
