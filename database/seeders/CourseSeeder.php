@@ -19,18 +19,16 @@ class CourseSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-       $dishes = Dish::all();
+        $dishes = Dish::all();
 
-       $_courses = ['Antipasto', 'Primo', 'Secondo', 'Contorni', 'Bibite',];
+        $_courses = ['Antipasto', 'Primo', 'Secondo', 'Contorni', 'Dessert',];
 
-       foreach($_courses as $_course) {
-        $course = new Course();
-        $course->name = $_course;
-        $course->color = $faker->hexColor();
+        foreach ($_courses as $_course) {
+            $course = new Course();
+            $course->name = $_course;
+            $course->color = $faker->hexColor();
 
-        $course->save();
-
-       }
+            $course->save();
+        }
     }
 }
-
