@@ -44,7 +44,9 @@ Route::middleware(['auth', 'verified'])
     Route::resource('dish', DishController::class);
 
     // For orders
-    Route::get('/orders-summary',[ OrderController::class, 'index'])->name('orders-summary');
+    Route::get('/orders-summary', [OrderController::class, 'index'])->name('orders-summary');
+
+    Route::get('/order', [OrderGrapichController::class, 'controlPannel'])->name('order');
   });
 
 
